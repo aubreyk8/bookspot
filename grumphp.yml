@@ -1,0 +1,15 @@
+parameters:
+  git_dir: .
+  bin_dir: vendor/bin
+  ignore_unstaged_changes: true
+  tasks:
+    git_blacklist:
+      keywords:
+        - "die("
+        - "var_dump("
+        - "print_r("
+        - "exit;"
+      triggered_by: [php]
+    phpcs:
+      standard: PSR2
+      ignore_patterns: [./tests/*, ./resources/*, ./database/*, ./bootstrap/*, ./public]
