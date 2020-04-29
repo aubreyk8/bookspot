@@ -11,14 +11,14 @@ class ReviewsScreen extends Screen
      *
      * @var string
      */
-    public $name = 'ReviewsScreen';
+    public $name = 'Reviews';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'ReviewsScreen';
+    public $description = 'BookSpot Reviews';
 
     /**
      * Query data.

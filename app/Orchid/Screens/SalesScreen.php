@@ -11,14 +11,14 @@ class SalesScreen extends Screen
      *
      * @var string
      */
-    public $name = 'SalesScreen';
+    public $name = 'Sales';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'SalesScreen';
+    public $description = 'BookSpot Sales';
 
     /**
      * Query data.

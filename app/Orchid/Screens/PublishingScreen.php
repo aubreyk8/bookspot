@@ -11,14 +11,14 @@ class PublishingScreen extends Screen
      *
      * @var string
      */
-    public $name = 'PublishingScreen';
+    public $name = 'Publishing';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'PublishingScreen';
+    public $description = 'BookSpot Publishing';
 
     /**
      * Query data.

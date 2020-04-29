@@ -4,6 +4,10 @@ namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
 
+/**
+ * Class DashboardScreen
+ * @package App\Orchid\Screens
+ */
 class DashboardScreen extends Screen
 {
     /**
@@ -11,14 +15,14 @@ class DashboardScreen extends Screen
      *
      * @var string
      */
-    public $name = 'DashboardScreen';
+    public $name = 'Dashboard';
 
     /**
      * Display header description.
      *
      * @var string
      */
-    public $description = 'DashboardScreen';
+    public $description = 'BookSpot Dashboard';
 
     /**
      * Query data.
