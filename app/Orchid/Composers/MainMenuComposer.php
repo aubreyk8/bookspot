@@ -30,22 +30,6 @@ class MainMenuComposer
      */
     public function compose()
     {
-        // Profile
-        $this->dashboard->menu
-            ->add(
-                Menu::PROFILE,
-                ItemMenu::label('Action')
-                    ->icon('icon-compass')
-                    ->badge(function () {
-                        return 6;
-                    })
-            )
-            ->add(
-                Menu::PROFILE,
-                ItemMenu::label('Another action')
-                    ->icon('icon-heart')
-            );
-
         // Main
         $this->dashboard->menu
             ->add(
