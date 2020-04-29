@@ -51,20 +51,20 @@ class MainMenuComposer
             ->add(
                 Menu::MAIN,
                 ItemMenu::label('Dashboard')
-                    ->icon('icon-monitor')
+                    ->icon('icon-chart')
                     ->route('platform.dashboard')
                     ->title('Navigation')
             )
             ->add(
                 Menu::MAIN,
                 ItemMenu::label('Publishing')
-                    ->icon('icon-list')
+                    ->icon('icon-book-open')
                     ->route('platform.publishing')
             )
             ->add(
                 Menu::MAIN,
                 ItemMenu::label('Sales')
-                    ->icon('icon-layers')
+                    ->icon('icon-money')
                     ->route('platform.sales')
             )->add(
                 Menu::MAIN,
