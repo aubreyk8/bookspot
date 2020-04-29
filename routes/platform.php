@@ -2,15 +2,19 @@
 
 declare(strict_types=1);
 
-use App\Orchid\Screens\Examples\ExampleFieldsScreen;
-use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
-use App\Orchid\Screens\Examples\ExampleScreen;
+use App\Orchid\Screens\SalesScreen;
+use Illuminate\Support\Facades\Route;
+use App\Orchid\Screens\ReviewsScreen;
 use App\Orchid\Screens\PlatformScreen;
+use App\Orchid\Screens\DashboardScreen;
+use App\Orchid\Screens\PublishingScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
 use App\Orchid\Screens\User\UserListScreen;
-use Illuminate\Support\Facades\Route;
+use App\Orchid\Screens\Examples\ExampleScreen;
+use App\Orchid\Screens\Examples\ExampleFieldsScreen;
+use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +43,8 @@ Route::screen('roles', RoleListScreen::class)->name('platform.systems.roles');
 Route::screen('example', ExampleScreen::class)->name('platform.example');
 Route::screen('example-fields', ExampleFieldsScreen::class)->name('platform.example.fields');
 Route::screen('example-layouts', ExampleLayoutsScreen::class)->name('platform.example.layouts');
-//Route::screen('/dashboard/screen/idea', 'Idea::class','platform.screens.idea');
+
+Route::screen('dashboard', DashboardScreen::class)->name('platform.dashboard');
+Route::screen('publish', PublishingScreen::class)->name('platform.publishing');
+Route::screen('sales', SalesScreen::class)->name('platform.sales');
+Route::screen('reviews', ReviewsScreen::class)->name('platform.reviews');

@@ -50,40 +50,27 @@ class MainMenuComposer
         $this->dashboard->menu
             ->add(
                 Menu::MAIN,
-                ItemMenu::label('Example screen')
+                ItemMenu::label('Dashboard')
                     ->icon('icon-monitor')
                     ->route('platform.example')
                     ->title('Navigation')
             )
             ->add(
                 Menu::MAIN,
-                ItemMenu::label('Form controls')
+                ItemMenu::label('Publishing')
                     ->icon('icon-list')
                     ->route('platform.example.fields')
             )
             ->add(
                 Menu::MAIN,
-                ItemMenu::label('Overview layouts')
+                ItemMenu::label('Sales')
                     ->icon('icon-layers')
                     ->route('platform.example.layouts')
-            )
-            ->add(
+            )->add(
                 Menu::MAIN,
-                ItemMenu::label('Dropdown menu')
-                    ->title('Sub menu')
-                    ->slug('example-menu')
-                    ->icon('icon-code')
-                    ->childs()
-            )
-            ->add(
-                'example-menu',
-                ItemMenu::label('Sub element item 1')
-                    ->icon('icon-bag')
-            )
-            ->add(
-                'example-menu',
-                ItemMenu::label('Sub element item 2')
-                    ->icon('icon-heart')
+                ItemMenu::label('Reviews')
+                    ->icon('icon-layers')
+                    ->route('platform.example.layouts')
             );
     }
 }
