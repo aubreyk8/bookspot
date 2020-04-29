@@ -52,25 +52,25 @@ class MainMenuComposer
                 Menu::MAIN,
                 ItemMenu::label('Dashboard')
                     ->icon('icon-monitor')
-                    ->route('platform.example')
+                    ->route('platform.dashboard')
                     ->title('Navigation')
             )
             ->add(
                 Menu::MAIN,
                 ItemMenu::label('Publishing')
                     ->icon('icon-list')
-                    ->route('platform.example.fields')
+                    ->route('platform.publishing')
             )
             ->add(
                 Menu::MAIN,
                 ItemMenu::label('Sales')
                     ->icon('icon-layers')
-                    ->route('platform.example.layouts')
+                    ->route('platform.sales')
             )->add(
                 Menu::MAIN,
                 ItemMenu::label('Reviews')
                     ->icon('icon-layers')
-                    ->route('platform.example.layouts')
+                    ->route('platform.reviews')
             );
     }
 }
