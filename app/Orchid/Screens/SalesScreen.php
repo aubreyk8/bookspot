@@ -4,6 +4,10 @@ namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
 
+/**
+ * Class SalesScreen
+ * @package App\Orchid\Screens
+ */
 class SalesScreen extends Screen
 {
     /**
