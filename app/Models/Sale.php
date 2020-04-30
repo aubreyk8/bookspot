@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Orchid\Screen\AsSource;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Sale extends Model
 {
+    use AsSource;
+
     /**
      * @var array
      */
@@ -28,4 +31,9 @@ class Sale extends Model
     protected $dates = [
         'expires_on',
     ];
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }

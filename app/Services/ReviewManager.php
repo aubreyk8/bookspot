@@ -20,7 +20,7 @@ class ReviewManager
      */
     public function getReviews(): LengthAwarePaginator
     {
-        if (Auth::user()->hasAccess('administrator')) {
+        if (Auth::user()->inRole('administrator')) {
             return Reviews::paginate();
         }
 
