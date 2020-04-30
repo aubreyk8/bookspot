@@ -16,7 +16,8 @@ class PublishingTableSeeder extends Seeder
             'title' => 'All i ever wanted',
             'category' => 'ROMANCE',
             'slug' => 'all-i-ever-wanted',
-            'isbn' => '37737337373'
+            'isbn' => '37737337373',
+            'user_id' => 2
         ]);
 
 
@@ -24,7 +25,8 @@ class PublishingTableSeeder extends Seeder
             'title' => 'All i ever wanted',
             'category' => 'ROMANCE',
             'slug' => 'all-i-ever-wanted',
-            'isbn' => '37737337373'
+            'isbn' => '37737337373',
+            'user_id' => 2
         ]);
 
 
@@ -32,7 +34,8 @@ class PublishingTableSeeder extends Seeder
             'title' => 'All i ever wanted',
             'category' => 'ROMANCE',
             'slug' => 'all-i-ever-wanted',
-            'isbn' => '37737337373'
+            'isbn' => '37737337373',
+            'user_id' => 2
         ]);
 
 
@@ -40,7 +43,8 @@ class PublishingTableSeeder extends Seeder
             'title' => 'All i ever wanted',
             'category' => 'ROMANCE',
             'slug' => 'all-i-ever-wanted',
-            'isbn' => '37737337373'
+            'isbn' => '37737337373',
+            'user_id' => 3
         ]);
 
 
@@ -48,7 +52,8 @@ class PublishingTableSeeder extends Seeder
             'title' => 'All i ever wanted',
             'category' => 'ROMANCE',
             'slug' => 'all-i-ever-wanted',
-            'isbn' => '37737337373'
+            'isbn' => '37737337373',
+            'user_id' => 3
         ]);
     }
 }
