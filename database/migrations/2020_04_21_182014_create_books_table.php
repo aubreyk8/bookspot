@@ -19,6 +19,7 @@ class CreateBooksTable extends Migration
             $table->string('category');
             $table->string('slug');
             $table->string('isbn');
+            $table->bigInteger('user_id', false, true);
             $table->timestamps();
         });
     }

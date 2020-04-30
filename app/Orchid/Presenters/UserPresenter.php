@@ -24,7 +24,7 @@ class UserPresenter extends Presenter implements Searchable, Personable
      */
     public function title(): string
     {
-        return $this->entity->name;
+        return $this->entity->first_name . ' ' . $this->entity->last_name;
     }
 
     /**
@@ -32,7 +32,9 @@ class UserPresenter extends Presenter implements Searchable, Personable
      */
     public function subTitle(): string
     {
-        return 'Administrator';
+        foreach ($this->entity->roles as $role) {
+            return $role->name;
+        }
     }
 
     /**
