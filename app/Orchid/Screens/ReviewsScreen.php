@@ -3,6 +3,9 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
+use App\Services\ReviewManager;
+use App\Orchid\Layouts\Reviews\ReviewsListLayout;
+use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
  * Class ReviewsScreen
@@ -27,11 +30,15 @@ class ReviewsScreen extends Screen
     /**
      * Query data.
      *
+     * @param ReviewManager $manager
      * @return array
+     * @throws BindingResolutionException
      */
-    public function query(): array
+    public function query(ReviewManager $manager): array
     {
-        return [];
+        return [
+            'reviews' => $manager->getReviews()
+        ];
     }
 
     /**
@@ -51,6 +58,8 @@ class ReviewsScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+        return [
+            ReviewsListLayout::class,
+        ];
     }
 }

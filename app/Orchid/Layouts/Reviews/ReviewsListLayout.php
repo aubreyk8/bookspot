@@ -2,7 +2,9 @@
 
 namespace App\Orchid\Layouts\Reviews;
 
+use App\Models\Reviews;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\TD;
 
 /**
  * Class ReviewsListLayout
@@ -21,7 +23,14 @@ class ReviewsListLayout extends Table
     protected function columns(): array
     {
         return [
-
+            TD::set('isbn', 'ISBN')->render(function (Reviews $reviews) {
+                return $reviews->book->isbn;
+            }),
+            TD::set('book_id', 'Book')->render(function (Reviews $reviews) {
+                return $reviews->book->title;
+            }),
+            TD::set('review', 'Reviews'),
+            TD::set('comment', 'Comment')
         ];
     }
 }
