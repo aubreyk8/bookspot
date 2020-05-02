@@ -36,7 +36,7 @@ class MainMenuComposer
                 Menu::MAIN,
                 ItemMenu::label('Dashboard')
                     ->icon('icon-chart')
-                    ->route('platform.dashboard')
+                    ->route('platform.main')
                     ->title('Navigation')
             )
             ->add(
