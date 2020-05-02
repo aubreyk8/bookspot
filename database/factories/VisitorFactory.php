@@ -20,6 +20,5 @@ $factory->define(Visitor::class, function (Faker $faker) {
         'mobile' => boolval($faker->numberBetween(0, 1)),
         'proxy' => boolval($faker->numberBetween(0, 1)),
         'book_id' => $faker->numberBetween(1, 5),
-        'user_id' => $faker->numberBetween(2, 3),
     ];
 });

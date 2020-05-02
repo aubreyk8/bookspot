@@ -27,7 +27,6 @@ class CreateVisitorsTable extends Migration
             $table->boolean('mobile');
             $table->boolean('proxy');
             $table->bigInteger('book_id', false, true);
-            $table->bigInteger('user_id', false, true);
             $table->timestamps();
         });
     }

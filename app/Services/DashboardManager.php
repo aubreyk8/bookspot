@@ -2,10 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Sale;
-use App\Models\Visitor;
 use Carbon\Carbon;
+use App\Models\Sale;
 use App\Models\Reviews;
+use App\Models\Visitor;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -141,9 +141,12 @@ class DashboardManager
         ]);
 
         if (!Auth::user()->inRole('administrator')) {
+            $collection = $collection->get()->reject(function ($object) {
+                return !($object->book->user_id === Auth::user()->id);
+            });
         }
 
-        return $collection->get();
+        return $collection instanceof Collection  ? $collection : $collection->get();
     }
 
     /**

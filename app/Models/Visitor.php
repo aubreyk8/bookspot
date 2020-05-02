@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class Visitor
@@ -26,6 +27,13 @@ class Visitor extends Model
         'mobile',
         'proxy',
         'book_id',
-        'user_id'
     ];
+
+    /**
+     * @return BelongsTo
+     */
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
 }
