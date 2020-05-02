@@ -2,7 +2,11 @@
 
 namespace App\Orchid\Screens;
 
+use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use App\Services\DashboardManager;
+use App\Orchid\Layouts\Dashboard\SixMonthReportLayout;
+use App\Orchid\Layouts\Dashboard\DashboardMatrixLayout;
 
 /**
  * Class DashboardScreen
@@ -10,6 +14,7 @@ use Orchid\Screen\Screen;
  */
 class DashboardScreen extends Screen
 {
+
     /**
      * Display header name.
      *
@@ -27,11 +32,15 @@ class DashboardScreen extends Screen
     /**
      * Query data.
      *
+     * @param DashboardManager $manager
      * @return array
      */
-    public function query(): array
+    public function query(DashboardManager $manager): array
     {
-        return [];
+        return [
+            'charts'  => $manager->getSixMonthReport(),
+            'metrics' => $manager->getMatrix(),
+        ];
     }
 
     /**
@@ -51,6 +60,9 @@ class DashboardScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+        return [
+            DashboardMatrixLayout::class,
+            SixMonthReportLayout::class,
+        ];
     }
 }

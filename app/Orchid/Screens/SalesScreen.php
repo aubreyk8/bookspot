@@ -3,6 +3,8 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
+use App\Services\SalesManager;
+use App\Orchid\Layouts\Sales\SalesListLayout;
 
 /**
  * Class SalesScreen
@@ -27,11 +29,14 @@ class SalesScreen extends Screen
     /**
      * Query data.
      *
+     * @param SalesManager $manager
      * @return array
      */
-    public function query(): array
+    public function query(SalesManager $manager): array
     {
-        return [];
+        return [
+            'sales' => $manager->getSales(),
+        ];
     }
 
     /**
@@ -51,6 +56,8 @@ class SalesScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+        return [
+            SalesListLayout::class,
+        ];
     }
 }
