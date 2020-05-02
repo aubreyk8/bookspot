@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Publishing;
 
 use App\Models\Book;
+use App\Orchid\Type\Indicator;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\TD;
@@ -27,7 +28,12 @@ class PublishListLayout extends Table
         return [
             TD::set('isbn', 'ISBN'),
             TD::set('title', 'Title'),
-            TD::set('status', 'Status'),
+            TD::set('status', 'Status')->render(function (Book $book) {
+                return Indicator::make($book->status, [
+                    'Un Published',
+                    'Published',
+                ]);
+            }),
             TD::set('category', 'Category'),
             TD::set('slug', 'Slug'),
             TD::set('user_id', 'Authorize')->render(function (Book $book) {
