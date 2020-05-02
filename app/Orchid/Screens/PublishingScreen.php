@@ -3,6 +3,8 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
+use App\Services\PublishingManager;
+use App\Orchid\Layouts\Publishing\PublishListLayout;
 
 /**
  * Class PublishingScreen
@@ -27,11 +29,14 @@ class PublishingScreen extends Screen
     /**
      * Query data.
      *
+     * @param PublishingManager $manager
      * @return array
      */
-    public function query(): array
+    public function query(PublishingManager $manager): array
     {
-        return [];
+        return [
+            'books' => $manager->getList(),
+        ];
     }
 
     /**
@@ -51,6 +56,8 @@ class PublishingScreen extends Screen
      */
     public function layout(): array
     {
-        return [];
+        return [
+            PublishListLayout::class
+        ];
     }
 }
