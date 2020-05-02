@@ -45,7 +45,9 @@
                 </div>
             </div>
             <div class="col-md col-xl col-xxl-9 bg-white shadow no-padder min-vh-100 overflow-hidden">
-                @yield('body-right')
+                <div class="app-content-area">
+                    @yield('body-right')
+                </div>
             </div>
         </div>
     </div>

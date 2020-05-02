@@ -121,6 +121,9 @@ p {
     border-radius: 10px
 }
 
+.app-content-area {
+    padding: 30px 20px;
+}
 
 abbr[title],
 abbr[data-original-title] {
