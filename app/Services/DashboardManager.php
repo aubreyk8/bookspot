@@ -24,6 +24,11 @@ class DashboardManager
     private array $currentMonth = [];
 
     /**
+     * @var array
+     */
+    private array $sixMonth = [];
+
+    /**
      * DashboardManager constructor.
      */
     public function __construct()
@@ -40,6 +45,13 @@ class DashboardManager
                 'end' => $now->lastOfMonth()->toDateString() . ' 23:59:59'
             ]
         ];
+
+        for ($i = 5; $i >= 0; $i --) {
+            $this->sixMonth[] = [
+                'start' => Carbon::now()->subMonths($i)->firstOfMonth()->toDateTimeString(),
+                'end' => Carbon::now()->subMonths($i)->lastOfMonth()->toDateString() . ' 23:59:59'
+            ];
+        }
     }
 
     /**
@@ -60,20 +72,34 @@ class DashboardManager
     {
         return [
                     [
-                        'name'   => 'Some Data',
-                        'values' => [25, 40, 30, 35, 8, 52, 17],
+                        'name'   => 'Sales',
+                        'values' => $this->buildSixMonthReport(Sale::class, function (Collection $collection) {
+                            return $collection->count();
+                        }),
                     ],
                     [
-                        'name'   => 'Another Set',
-                        'values' => [25, 50, -10, 15, 18, 32, 27],
+                        'name'   => 'Visitors',
+                        'values' => $this->buildSixMonthReport(Visitor::class, function (Collection $collection) {
+                            return $collection->count();
+                        })
                     ],
                     [
-                        'name'   => 'Yet Another',
-                        'values' => [15, 20, -3, -15, 58, 12, -17],
+                        'name'   => 'Earnings',
+                        'values' => $this->buildSixMonthReport(Sale::class, function (Collection $collection) {
+                            return $collection->sum('price');
+                        })
                     ],
                     [
-                        'name'   => 'And Last',
-                        'values' => [10, 33, -8, -3, 70, 20, -34],
+                        'name'   => 'Rating',
+                        'values' => $this->buildSixMonthReport(Reviews::class, function (Collection $collection) {
+                            return number_format($collection->average('review'), 2);
+                        })
+                    ],
+                    [
+                        'name'   => 'Reviews',
+                        'values' => $this->buildSixMonthReport(Reviews::class, function (Collection $collection) {
+                            return $collection->count();
+                        })
                     ],
         ];
     }
@@ -133,12 +159,19 @@ class DashboardManager
      * @param int $month
      * @return mixed
      */
-    private function getModelForMonth(string $model, int $month = self::THIS_MONTH)
+    private function getModelForMonth(string $model, int $month = self::THIS_MONTH): Collection
     {
-        $collection = $model::whereBetween('created_at', [
-            $this->currentMonth[$month]['start'],
-            $this->currentMonth[$month]['end']
-        ]);
+        return $this->getModelForSpecificMonth($model, $this->currentMonth[$month]);
+    }
+
+    /**
+     * @param string $model
+     * @param array $month
+     * @return Collection
+     */
+    public function getModelForSpecificMonth(string $model, array $month): Collection
+    {
+        $collection = $model::whereBetween('created_at', [$month['start'], $month['end']]);
 
         if (!Auth::user()->inRole('administrator')) {
             $collection = $collection->get()->reject(function ($object) {
@@ -163,6 +196,21 @@ class DashboardManager
             'keyValue' => number_format($currentMonth, $precision),
             'keyDiff' => number_format($this->getDiff($currentMonth, $lastMonth), 2)
         ];
+    }
+
+    /**
+     * @param string $model
+     * @return array
+     */
+    public function buildSixMonthReport(string $model, \Closure $calcFunction): array
+    {
+        $data = [];
+
+        foreach ($this->sixMonth as $month) {
+            $data[] = $calcFunction($this->getModelForSpecificMonth($model, $month));
+        }
+
+        return $data;
     }
 
     /**
