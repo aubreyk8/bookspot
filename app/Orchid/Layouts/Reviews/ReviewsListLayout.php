@@ -2,9 +2,10 @@
 
 namespace App\Orchid\Layouts\Reviews;
 
-use App\Models\Reviews;
-use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
+use App\Models\Reviews;
+use App\Orchid\Type\RatingType;
+use Orchid\Screen\Layouts\Table;
 
 /**
  * Class ReviewsListLayout
@@ -29,7 +30,9 @@ class ReviewsListLayout extends Table
             TD::set('book_id', 'Book')->render(function (Reviews $reviews) {
                 return $reviews->book->title;
             }),
-            TD::set('review', 'Reviews'),
+            TD::set('review', 'Reviews')->render(function (Reviews $reviews) {
+                return RatingType::make($reviews->review);
+            }),
             TD::set('comment', 'Comment')
         ];
     }
