@@ -59,6 +59,7 @@ class PublishingScreen extends Screen
                 ->icon('icon-cloud-upload')
                 ->modal('publishAsyncModal')
                 ->method('createPublication')
+                ->modalTitle('Publish A Book')
         ];
     }
 
@@ -74,18 +75,17 @@ class PublishingScreen extends Screen
             Layout::modal('publishAsyncModal', [
                 PublishEditLayout::class
             ])->async('asyncGetBook')
-              ->title('Publish A Book')
         ];
     }
 
     /**
-     * @param Book $book
+     * @param Request $request
      * @return array
      */
-    public function asyncGetBook(Book $book)
+    public function asyncGetBook(Request $request)
     {
         return [
-            'book' => $book
+            'book' => Book::findOrFail($request->input('id'))
         ];
     }
 
@@ -113,6 +113,20 @@ class PublishingScreen extends Screen
         $manager->publish($request->input('id'));
 
         Toast::success('Book has been published');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function updatePublication(Request $request, PublishingManager $manager)
+    {
+        $manager->updatePublication($request->input('book'));
+
+        Toast::success('Book has been updated');
 
         return redirect()->back();
     }

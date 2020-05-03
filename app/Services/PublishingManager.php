@@ -45,6 +45,16 @@ class PublishingManager
     }
 
     /**
+     * @param array $bookInputs
+     */
+    public function updatePublication(array $bookInputs): void
+    {
+        $book = Book::find($bookInputs['id']);
+        $book->fill($bookInputs);
+        $book->save();
+    }
+
+    /**
      * @param int $id
      */
     public function publish(int $id): void
