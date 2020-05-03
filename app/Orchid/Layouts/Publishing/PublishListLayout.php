@@ -35,7 +35,9 @@ class PublishListLayout extends Table
                     'Published',
                 ]);
             }),
-            TD::set('category', 'Category'),
+            TD::set('category_id', 'Category')->render(function (Book $book) {
+                return $book->category->name;
+            }),
             TD::set('slug', 'Slug'),
             TD::set('user_id', 'Authorize')->render(function (Book $book) {
                 return $book->author->first_name . ' ' . $book->author->last_name;

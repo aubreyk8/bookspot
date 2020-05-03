@@ -18,7 +18,7 @@ class Book extends Model
 
     protected $fillable = [
         'title',
-        'category',
+        'category_id',
         'slug',
         'isbn',
         'cover_image',
@@ -39,5 +39,10 @@ class Book extends Model
     public function reviews()
     {
         return $this->hasMany(Reviews::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

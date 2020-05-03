@@ -17,7 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->boolean('status')->default(false);
-            $table->string('category');
+            $table->bigInteger('category_id', false, true);
             $table->string('slug');
             $table->string('isbn');
             $table->string('cover_image');

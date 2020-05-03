@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts\Publishing;
 
+use App\Models\Category;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
@@ -39,11 +40,9 @@ class PublishEditLayout extends Rows
                 ->placeholder(__('Title'))
                 ->horizontal()
                 ->required(),
-            Select::make('book.category')
-                ->options([
-                    'GOSPEL'  => 'GOSPEL',
-                    'ROMANCE' => 'ROMANCE'
-                ])->title('Category')
+            Select::make('book.category_id')
+                ->fromModel(Category::class, 'name', 'id')
+                ->title('Category')
                 ->empty('No select', 0)
                 ->horizontal()
                 ->required(),

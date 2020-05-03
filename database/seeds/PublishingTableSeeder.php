@@ -14,7 +14,7 @@ class PublishingTableSeeder extends Seeder
     {
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
-            'category' => 'ROMANCE',
+            'category_id' => 34,
             'slug' => 'all-i-ever-wanted',
             'isbn' => '37737337373',
             'user_id' => 2,
@@ -25,7 +25,7 @@ class PublishingTableSeeder extends Seeder
 
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
-            'category' => 'ROMANCE',
+            'category_id' => 34,
             'slug' => 'all-i-ever-wanted',
             'isbn' => '37737337373',
             'user_id' => 2,
@@ -36,7 +36,7 @@ class PublishingTableSeeder extends Seeder
 
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
-            'category' => 'ROMANCE',
+            'category_id' => 1,
             'slug' => 'all-i-ever-wanted',
             'isbn' => '37737337373',
             'user_id' => 2,
@@ -47,7 +47,7 @@ class PublishingTableSeeder extends Seeder
 
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
-            'category' => 'ROMANCE',
+            'category_id' => 5,
             'slug' => 'all-i-ever-wanted',
             'isbn' => '37737337373',
             'user_id' => 3,
@@ -58,7 +58,7 @@ class PublishingTableSeeder extends Seeder
 
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
-            'category' => 'ROMANCE',
+            'category_id' => 17,
             'slug' => 'all-i-ever-wanted',
             'isbn' => '37737337373',
             'user_id' => 3,
