@@ -25,10 +25,10 @@ class ReviewsListLayout extends Table
     {
         return [
             TD::set('isbn', 'ISBN')->render(function (Reviews $reviews) {
-                return $reviews->book->isbn;
+                return isset($reviews->book) ? $reviews->book->isbn : '<del>Book has been deleted</del>';
             }),
             TD::set('book_id', 'Book')->render(function (Reviews $reviews) {
-                return $reviews->book->title;
+                return isset($reviews->book) ? $reviews->book->title : '<del>Book has been deleted</del>';
             }),
             TD::set('review', 'Reviews')->render(function (Reviews $reviews) {
                 return RatingType::make($reviews->review);
