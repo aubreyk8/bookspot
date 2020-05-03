@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Orchid\Screen\AsSource;
+use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,13 +14,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Book extends Model
 {
-    use AsSource;
+    use AsSource, Attachable;
 
     protected $fillable = [
         'title',
         'category',
         'slug',
         'isbn',
+        'cover_image',
         'user_id'
     ];
 
