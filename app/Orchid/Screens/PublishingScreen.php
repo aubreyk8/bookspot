@@ -6,6 +6,7 @@ use App\Models\Book;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Modal;
 use Orchid\Support\Facades\Toast;
 use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
@@ -75,6 +76,7 @@ class PublishingScreen extends Screen
             Layout::modal('publishAsyncModal', [
                 PublishEditLayout::class
             ])->async('asyncGetBook')
+              ->size(Modal::SIZE_LG)
         ];
     }
 

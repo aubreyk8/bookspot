@@ -21,30 +21,37 @@ class PublishEditLayout extends Rows
     protected function fields(): array
     {
         return [
+            Input::make('book.id')
+                ->type('hidden'),
             Input::make('book.isbn')
                 ->type('text')
                 ->max(255)
                 ->required()
                 ->title(__('ISBN'))
                 ->placeholder(__('ISBN'))
-                ->horizontal(),
+                ->horizontal()
+                ->required(),
             Input::make('book.title')
                 ->type('text')
                 ->max(255)
                 ->required()
                 ->title(__('Title'))
                 ->placeholder(__('Title'))
-                ->horizontal(),
+                ->horizontal()
+                ->required(),
             Select::make('book.category')
                 ->options([
-                    'GHOSPEL'  => 'GHOSPEL',
+                    'GOSPEL'  => 'GOSPEL',
+                    'ROMANCE' => 'ROMANCE'
                 ])->title('Category')
                 ->empty('No select', 0)
-                ->horizontal(),
+                ->horizontal()
+                ->required(),
             Cropper::make('book.cover_image')
-                ->width(500)
-                ->height(300)
-                ->accept('image/*'),
+                ->width(ENV('CROPPER_IMAGE_WIDTH', 500))
+                ->height(ENV('CROPPER_IMAGE_HEIGHT', 300))
+                ->accept('image/*')
+                ->required(),
             Upload::make('book.published_book')
                 ->acceptedFiles('application/pdf')
                 ->groups('publications')
