@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('category');
             $table->string('slug');
             $table->string('isbn');
+            $table->string('cover_image');
             $table->bigInteger('user_id', false, true);
             $table->softDeletes();
             $table->timestamps();
