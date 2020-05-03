@@ -6,7 +6,7 @@ namespace App\Orchid\Type;
  * Class Indicator
  * @package App\Orchid\Type
  */
-class Indicator
+class IndicatorType
 {
     public static function make(bool $state, array $labels = [])
     {
