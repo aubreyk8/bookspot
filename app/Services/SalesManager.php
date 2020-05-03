@@ -15,9 +15,9 @@ class SalesManager
     public function getSales(): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
-            return Sale::paginate();
+            return Sale::paginate(14);
         }
 
-        return Sale::where('user_id', Auth::user()->id)->paginate();
+        return Sale::where('user_id', Auth::user()->id)->paginate(14);
     }
 }

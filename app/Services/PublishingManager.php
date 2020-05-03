@@ -12,12 +12,15 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class PublishingManager
 {
+    /**
+     * @return LengthAwarePaginator
+     */
     public function getList(): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
-            return Book::paginate();
+            return Book::paginate(14);
         }
 
-        return Book::where('user_id', Auth::user()->id)->paginate();
+        return Book::where('user_id', Auth::user()->id)->paginate(14);
     }
 }
