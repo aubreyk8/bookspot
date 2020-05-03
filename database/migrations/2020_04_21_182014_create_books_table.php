@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBooksTable extends Migration
 {
@@ -17,9 +17,10 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->boolean('status')->default(false);
-            $table->string('category');
+            $table->bigInteger('category_id', false, true);
             $table->string('slug');
             $table->string('isbn');
+            $table->string('cover_image');
             $table->bigInteger('user_id', false, true);
             $table->softDeletes();
             $table->timestamps();

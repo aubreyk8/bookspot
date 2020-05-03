@@ -2,8 +2,16 @@
 
 namespace App\Orchid\Screens;
 
+use App\Models\Book;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layout;
+use Illuminate\Http\Request;
+use Orchid\Screen\Layouts\Modal;
+use Orchid\Support\Facades\Toast;
 use App\Services\PublishingManager;
+use Illuminate\Http\RedirectResponse;
+use Orchid\Screen\Actions\ModalToggle;
+use App\Orchid\Layouts\Publishing\PublishEditLayout;
 use App\Orchid\Layouts\Publishing\PublishListLayout;
 
 /**
@@ -46,7 +54,14 @@ class PublishingScreen extends Screen
      */
     public function commandBar(): array
     {
-        return [];
+        return [
+            ModalToggle::make('Upload')
+                ->class('btn btn-primary')
+                ->icon('icon-cloud-upload')
+                ->modal('publishAsyncModal')
+                ->method('createPublication')
+                ->modalTitle('Publish A Book')
+        ];
     }
 
     /**
@@ -57,7 +72,92 @@ class PublishingScreen extends Screen
     public function layout(): array
     {
         return [
-            PublishListLayout::class
+            PublishListLayout::class,
+            Layout::modal('publishAsyncModal', [
+                PublishEditLayout::class
+            ])->async('asyncGetBook')
+              ->size(Modal::SIZE_LG)
         ];
+    }
+
+    /**
+     * @param Request $request
+     * @return array
+     */
+    public function asyncGetBook(Request $request)
+    {
+        return [
+            'book' => Book::findOrFail($request->input('id'))
+        ];
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function createPublication(Request $request, PublishingManager $manager)
+    {
+        $manager->createPublication($request->input('book'));
+
+        Toast::success('Publication has been created');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function publishBook(Request $request, PublishingManager $manager)
+    {
+        $manager->publish($request->input('id'));
+
+        Toast::success('Book has been published');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function updatePublication(Request $request, PublishingManager $manager)
+    {
+        $manager->updatePublication($request->input('book'));
+
+        Toast::success('Book has been updated');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function unPublishBook(Request $request, PublishingManager $manager)
+    {
+        $manager->unPublish($request->input('id'));
+
+        Toast::success('Book has been un-published');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function deletePublication(Request $request, PublishingManager $manager)
+    {
+        $manager->deletePublication($request->input('id'));
+
+        Toast::success('Book has been deleted');
+
+        return redirect()->back();
     }
 }

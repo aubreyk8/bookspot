@@ -27,7 +27,7 @@ class SalesListLayout extends Table
                 return str_pad($sale->id, '5', '0', STR_PAD_LEFT);
             }),
             TD::set('book_id', 'Book')->render(function (Sale $sale) {
-                return $sale->book->title;
+                return isset($sale->book) ? $sale->book->title : '<del>Book Has Been Deleted</del>';
             }),
             TD::set('price', 'Price')->render(function (Sale $sale) {
                 return 'R' . $sale->price;

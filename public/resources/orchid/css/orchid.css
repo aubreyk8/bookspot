@@ -105,6 +105,26 @@ p {
   margin-bottom: 1rem;
 }
 
+.content-area {
+    padding: 10px 40px;
+}
+
+.active-indicator {
+    background-color: green;
+    width: 50px;
+    border-radius: 10px
+}
+
+.inactive-indicator {
+    background-color: red;
+    width: 50px;
+    border-radius: 10px
+}
+
+.app-content-area {
+    padding: 30px 20px;
+}
+
 abbr[title],
 abbr[data-original-title] {
   text-decoration: underline;

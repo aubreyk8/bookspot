@@ -25,6 +25,10 @@ class ReviewManager
         }
 
         $reviews = Reviews::all()->reject(function ($review) {
+            if (empty($review->book)) {
+                return true;
+            }
+
             return !($review->book->user_id === Auth::user()->id);
         });
 
