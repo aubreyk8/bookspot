@@ -175,6 +175,10 @@ class DashboardManager
 
         if (!Auth::user()->inRole('administrator')) {
             $collection = $collection->get()->reject(function ($object) {
+                if (empty($object->book)) {
+                    return true;
+                }
+
                 return !($object->book->user_id === Auth::user()->id);
             });
         }
