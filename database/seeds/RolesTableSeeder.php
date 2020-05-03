@@ -49,7 +49,8 @@ class RolesTableSeeder extends Seeder
     public function getPublisherPermissions()
     {
         $publisherPermissions = [
-            'platform.index'
+            'platform.index',
+            'platform.systems.attachment'
         ];
 
         return Dashboard::getPermission()
