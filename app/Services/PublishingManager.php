@@ -25,6 +25,9 @@ class PublishingManager
         return Book::where('user_id', Auth::user()->id)->paginate(14);
     }
 
+    /**
+     * @param array $book
+     */
     public function createPublication(array $book): void
     {
         $publication = Book::create([
@@ -39,5 +42,34 @@ class PublishingManager
         $publication->attachment()->syncWithoutDetaching(
             $book['published_book']
         );
+    }
+
+    /**
+     * @param int $id
+     */
+    public function publish(int $id): void
+    {
+        $book = Book::findOrFail($id);
+        $book->status = true;
+        $book->save();
+    }
+
+    /**
+     * @param int $id
+     */
+    public function unPublish(int $id): void
+    {
+        $book = Book::findOrFail($id);
+        $book->status = false;
+        $book->save();
+    }
+
+    /**
+     * @param int $id
+     */
+    public function deletePublication(int $id): void
+    {
+        $book = Book::findOrFail($id);
+        $book->delete();
     }
 }

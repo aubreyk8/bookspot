@@ -3,11 +3,12 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Book;
-use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
 use Orchid\Support\Facades\Toast;
 use App\Services\PublishingManager;
+use Illuminate\Http\RedirectResponse;
 use Orchid\Screen\Actions\ModalToggle;
 use App\Orchid\Layouts\Publishing\PublishEditLayout;
 use App\Orchid\Layouts\Publishing\PublishListLayout;
@@ -77,6 +78,10 @@ class PublishingScreen extends Screen
         ];
     }
 
+    /**
+     * @param Book $book
+     * @return array
+     */
     public function asyncGetBook(Book $book)
     {
         return [
@@ -84,11 +89,58 @@ class PublishingScreen extends Screen
         ];
     }
 
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
     public function createPublication(Request $request, PublishingManager $manager)
     {
         $manager->createPublication($request->input('book'));
 
         Toast::success('Publication has been created');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function publishBook(Request $request, PublishingManager $manager)
+    {
+        $manager->publish($request->input('id'));
+
+        Toast::success('Book has been published');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function unPublishBook(Request $request, PublishingManager $manager)
+    {
+        $manager->unPublish($request->input('id'));
+
+        Toast::success('Book has been un-published');
+
+        return redirect()->back();
+    }
+
+    /**
+     * @param Request $request
+     * @param PublishingManager $manager
+     * @return RedirectResponse
+     */
+    public function deletePublication(Request $request, PublishingManager $manager)
+    {
+        $manager->deletePublication($request->input('id'));
+
+        Toast::success('Book has been deleted');
 
         return redirect()->back();
     }

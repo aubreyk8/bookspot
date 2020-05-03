@@ -45,10 +45,26 @@ class PublishListLayout extends Table
                     ->list([
                         Button::make('Edit')
                             ->icon('icon-pencil'),
-                        Button::make('Un Publish') //control-play
-                            ->icon('icon-ban'),
+                        Button::make('Un Publish')
+                            ->icon('icon-ban')
+                            ->method('unPublishBook')
+                            ->parameters([
+                                'id' => $book->id
+                            ])->canSee($book->status),
+                        Button::make('Publish')
+                            ->icon('icon-control-play')
+                            ->canSee(!$book->status)
+                            ->method('publishBook')
+                            ->parameters([
+                                'id' => $book->id
+                            ]),
                         Button::make('Delete')
                             ->icon('icon-trash')
+                            ->method('deletePublication')
+                            ->parameters([
+                                'id' => $book->id
+                            ])
+                            ->confirm('Are you sure you want to delete publication?')
                     ]);
             })
         ];
