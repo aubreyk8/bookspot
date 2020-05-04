@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Reviews;
+use App\Constants\DashboardView;
 use App\Helpers\CollectionHelper;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -21,7 +22,7 @@ class ReviewManager
     public function getReviews(): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
-            return Reviews::paginate();
+            return Reviews::paginate(DashboardView::PAGINATION_LENGTH);
         }
 
         $reviews = Reviews::all()->reject(function ($review) {
@@ -32,6 +33,6 @@ class ReviewManager
             return !($review->book->user_id === Auth::user()->id);
         });
 
-        return CollectionHelper::paginate($reviews, $reviews->count(), 14);
+        return CollectionHelper::paginate($reviews, $reviews->count(), DashboardView::PAGINATION_LENGTH);
     }
 }
