@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Sale;
+use App\Constants\DashboardView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -15,9 +16,9 @@ class SalesManager
     public function getSales(): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
-            return Sale::paginate(14);
+            return Sale::paginate(DashboardView::PAGINATION_LENGTH);
         }
 
-        return Sale::where('user_id', Auth::user()->id)->paginate(14);
+        return Sale::where('user_id', Auth::user()->id)->paginate(DashboardView::PAGINATION_LENGTH);
     }
 }

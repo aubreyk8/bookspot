@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Book;
 use App\Helpers\SlugHelper;
+use App\Constants\DashboardView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -19,10 +20,10 @@ class PublishingManager
     public function getList(): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
-            return Book::paginate(14);
+            return Book::paginate(DashboardView::PAGINATION_LENGTH);
         }
 
-        return Book::where('user_id', Auth::user()->id)->paginate(14);
+        return Book::where('user_id', Auth::user()->id)->paginate(DashboardView::PAGINATION_LENGTH);
     }
 
     /**
