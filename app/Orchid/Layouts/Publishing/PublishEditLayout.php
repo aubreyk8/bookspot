@@ -8,6 +8,7 @@ use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Fields\Cropper;
+use Orchid\Screen\Fields\TextArea;
 
 /**
  * Class PublishEditLayout
@@ -40,6 +41,14 @@ class PublishEditLayout extends Rows
                 ->placeholder(__('Title'))
                 ->horizontal()
                 ->required(),
+            TextArea::make('book.description')
+                ->title('Description')
+                ->type('textarea')
+                ->max(300)
+                ->rows(5)
+                ->required()
+                ->horizontal()
+                ->placeholder('Description'),
             Select::make('book.category_id')
                 ->fromModel(Category::class, 'name', 'id')
                 ->title('Category')
