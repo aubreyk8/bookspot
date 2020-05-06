@@ -20,6 +20,7 @@ class CreateThemesTable extends Migration
             $table->string('secondary_color');
             $table->json('cover_image_height');
             $table->json('secondary_image_height');
+            $table->string('font_color')->default('FFFFFF');
             $table->bigInteger('book_id', false, true);
             $table->timestamps();
         });

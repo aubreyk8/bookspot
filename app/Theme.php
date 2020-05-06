@@ -17,7 +17,8 @@ class Theme extends Model
      */
     public $fillable = [
       'theme',
-        'book_id',
+      'book_id',
+      'font_color',
       'primary_color',
       'secondary_color',
       'cover_image_height',
