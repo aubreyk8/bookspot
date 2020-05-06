@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title', 255);
             $table->string('sub_title', 255);
+            $table->string('promotional_title', 255);
             $table->string('description', 300);
             $table->boolean('status')->default(false);
             $table->bigInteger('category_id', false, true);

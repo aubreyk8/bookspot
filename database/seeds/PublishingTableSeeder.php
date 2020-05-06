@@ -19,6 +19,7 @@ class PublishingTableSeeder extends Seeder
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
             'sub_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
+            'promotional_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
             'description' => $description,
             'category_id' => 34,
             'slug' => 'all-i-ever-wanted-1',
@@ -32,6 +33,7 @@ class PublishingTableSeeder extends Seeder
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
             'sub_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
+            'promotional_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
             'description' => $description,
             'category_id' => 34,
             'slug' => 'all-i-ever-wanted-2',
@@ -45,6 +47,7 @@ class PublishingTableSeeder extends Seeder
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
             'sub_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
+            'promotional_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
             'description' => $description,
             'category_id' => 1,
             'slug' => 'all-i-ever-wanted-3',
@@ -58,6 +61,7 @@ class PublishingTableSeeder extends Seeder
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
             'sub_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
+            'promotional_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
             'description' => $description,
             'category_id' => 5,
             'slug' => 'all-i-ever-wanted-4',
@@ -71,6 +75,7 @@ class PublishingTableSeeder extends Seeder
         DB::table('books')->insert([
             'title' => 'All i ever wanted',
             'sub_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
+            'promotional_title' => 'Where the Crawdads Sing is a 2018 novel by Delia Owens.',
             'description' => $description,
             'category_id' => 17,
             'slug' => 'all-i-ever-wanted-5',
