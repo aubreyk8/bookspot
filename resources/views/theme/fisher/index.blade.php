@@ -19,13 +19,14 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
 
     <!-- Js -->
-    <script src="/js/main.js"></script>
-    <script src="/js/wow.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
+    <!-- Js -->
     <script src="/js/vendor/modernizr-2.6.2.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/wow.min.js"></script>
+    <script src="/js/main.js"></script>
     <script>
         new WOW(
         ).init();
@@ -41,6 +42,8 @@
 @include('theme.fisher.services')
 
 @include('theme.fisher.testimonial')
+
+@include('theme.fisher.reviewers')
 
 @include('theme.fisher.footer')
 

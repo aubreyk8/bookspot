@@ -1,10 +1,13 @@
-<section id="showcase" style="background-color: #0000cc; height: 350px">
+<section id="showcase" style="background-color: #{{ $book->theme->primary_color }}; height: 400px">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="block text-center wow fadeInUp" data-wow-delay=".5s">
-                    <img src="{{ $book->cover_image }}" alt="{{ ucwords($book->title) }}">
-
+                    <img
+                        src="{{ $book->cover_image }}"
+                        alt="{{ ucwords($book->title) }}"
+                        height="{{ $book->theme->secondary_image_height }}"
+                    >
                 </div>
             </div>
         </div>
