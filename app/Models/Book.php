@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Theme;
+use App\Testimonial;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Model;
@@ -60,5 +61,13 @@ class Book extends Model
     public function theme(): HasOne
     {
         return $this->hasOne(Theme::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function testimonials(): HasMany
+    {
+        return $this->hasMany(Testimonial::class);
     }
 }
