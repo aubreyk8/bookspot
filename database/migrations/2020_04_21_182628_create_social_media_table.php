@@ -15,7 +15,7 @@ class CreateSocialMediaTable extends Migration
     {
         Schema::create('social_media', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('author_id', false, true);
+            $table->bigInteger('user_id', false, true);
             $table->string('platform');
             $table->string('url');
             $table->timestamps();
