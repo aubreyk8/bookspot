@@ -21,6 +21,7 @@ class Theme extends Model
       'font_color',
       'primary_color',
       'secondary_color',
+      'icon_color',
       'cover_image_height',
       'secondary_image_height',
     ];

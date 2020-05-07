@@ -18,6 +18,7 @@ class CreateThemesTable extends Migration
             $table->string('theme')->default('fisher');
             $table->string('primary_color');
             $table->string('secondary_color');
+            $table->string('icon_color');
             $table->json('cover_image_height');
             $table->json('secondary_image_height');
             $table->string('font_color')->default('FFFFFF');

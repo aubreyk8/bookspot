@@ -37,7 +37,7 @@
 
 @include('theme.fisher.header')
 
-@include('theme.fisher.features')
+@include('theme.fisher.topics')
 
 @include('theme.fisher.services')
 

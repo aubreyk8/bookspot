@@ -16,6 +16,7 @@ class ThemeTableSeeder extends Seeder
         DB::table('themes')->insert([
             'primary_color' => '0000cc',
             'secondary_color' => 'FED600',
+            'icon_color' => 'CD483E',
             'cover_image_height' => '450',
             'secondary_image_height' => '250',
             'book_id' => 1,
@@ -26,6 +27,7 @@ class ThemeTableSeeder extends Seeder
         DB::table('themes')->insert([
             'primary_color' => '0000cc',
             'secondary_color' => 'FED600',
+            'icon_color' => 'CD483E',
             'cover_image_height' => '450',
             'secondary_image_height' => '450',
             'book_id' => 2,
@@ -36,6 +38,7 @@ class ThemeTableSeeder extends Seeder
         DB::table('themes')->insert([
             'primary_color' => '0000cc',
             'secondary_color' => 'FED600',
+            'icon_color' => 'CD483E',
             'cover_image_height' => '450',
             'secondary_image_height' => '450',
             'book_id' => 3,
@@ -46,6 +49,7 @@ class ThemeTableSeeder extends Seeder
         DB::table('themes')->insert([
             'primary_color' => '0000cc',
             'secondary_color' => 'FED600',
+            'icon_color' => 'CD483E',
             'cover_image_height' => '450',
             'secondary_image_height' => '450',
             'book_id' => 4,
@@ -56,6 +60,7 @@ class ThemeTableSeeder extends Seeder
         DB::table('themes')->insert([
             'primary_color' => '0000cc',
             'secondary_color' => 'FED600',
+            'icon_color' => 'CD483E',
             'cover_image_height' => '450',
             'secondary_image_height' => '450',
             'book_id' => 5,

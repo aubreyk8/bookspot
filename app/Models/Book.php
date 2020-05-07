@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Theme;
+use App\Topic;
 use App\Reviewer;
 use App\Testimonial;
 use Orchid\Screen\AsSource;
@@ -78,5 +79,13 @@ class Book extends Model
     public function reviewer(): HasMany
     {
         return $this->hasMany(Reviewer::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function topics(): HasMany
+    {
+        return $this->hasMany(Topic::class);
     }
 }
