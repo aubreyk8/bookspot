@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSocialMediaTable extends Migration
+class CreateTestimonialsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSocialMediaTable extends Migration
      */
     public function up()
     {
-        Schema::create('social_media', function (Blueprint $table) {
+        Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id', false, true);
-            $table->string('platform');
-            $table->string('url');
+            $table->string('names', 100);
+            $table->string('job_title', 100);
+            $table->string('message', 220);
+            $table->bigInteger('book_id', false, true);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSocialMediaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('social_media');
+        Schema::dropIfExists('testimonials');
     }
 }

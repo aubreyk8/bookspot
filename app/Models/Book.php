@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+use App\Theme;
+use App\Topic;
+use App\Reviewer;
+use App\Testimonial;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -18,6 +23,10 @@ class Book extends Model
 
     protected $fillable = [
         'title',
+        'sub_title',
+        'promotional_title',
+        'description',
+        'price',
         'category_id',
         'slug',
         'isbn',
@@ -41,8 +50,43 @@ class Book extends Model
         return $this->hasMany(Reviews::class);
     }
 
-    public function category()
+    /**
+     * @return BelongsTo
+     */
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function theme(): HasOne
+    {
+        return $this->hasOne(Theme::class);
+    }
+
+    /***
+     * @return HasMany
+     */
+    public function testimonials(): HasMany
+    {
+        return $this->hasMany(Testimonial::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function reviewer(): HasMany
+    {
+        return $this->hasMany(Reviewer::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function topics(): HasMany
+    {
+        return $this->hasMany(Topic::class);
     }
 }

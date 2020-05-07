@@ -7,6 +7,7 @@ use App\Helpers\SlugHelper;
 use App\Constants\DashboardView;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Exceptions\PublicationNotFoundException;
 
 /**
  * Class PublishingManager
@@ -33,12 +34,17 @@ class PublishingManager
     {
         $publication = Book::create([
             'title' => $book['title'],
-            'category' => $book['category'],
+            'category_id' => $book['category_id'],
+            'description' => $book['description'],
             'slug' => SlugHelper::generate($book['title']),
             'isbn' => $book['isbn'],
             'user_id' => Auth::user()->id,
             'cover_image' => $book['cover_image']
         ]);
+
+        if (empty($book['published_book'])) {
+            return;
+        }
 
         $publication->attachment()->syncWithoutDetaching(
             $book['published_book']
@@ -82,5 +88,21 @@ class PublishingManager
     {
         $book = Book::findOrFail($id);
         $book->delete();
+    }
+
+    /**
+     * @param string $slug
+     * @return Book
+     * @throws PublicationNotFoundException
+     */
+    public function fromSlug(string $slug): Book
+    {
+        $book = Book::where('slug', $slug)->get()->first();
+
+        if (!isset($book)) {
+            throw new PublicationNotFoundException('Book not found', '404');
+        }
+
+        return $book;
     }
 }

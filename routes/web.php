@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('platform.main');
-});
+Route::get('/', 'PublicController@index')->name('home');
+Route::get('/publication/{slug}', 'PublicController@publication')->name('publication');
