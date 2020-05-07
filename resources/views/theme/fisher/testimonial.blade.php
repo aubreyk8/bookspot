@@ -1,28 +1,17 @@
-<section id="testimonial" style="background-color: #0000cc; height: 350px">
+<section id="testimonial" style="background-color: #{{ $book->theme->primary_color }}; height: 350px">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="block">
                     <div id="owl-example" class="owl-carousel">
-                        <div>
-                            <h5>
-                                “All I can say is i love this app so much. it helps me to keep manage my time. Being productive” <span>Phil Collins / World Surfer</span>
-
-                            </h5>
-
-                        </div>
-                        <div>
-                            <h5>
-                                “All I can say is i love this app so much. it helps me to keep manage my time. Being productive”  <span>Phil Collins / World Surfer</span>
-
-                            </h5>
-                        </div>
-                        <div>
-                            <h5>
-                                “All I can say is i love this app so much. it helps me to keep manage my time. Being productive”  <span>Phil Collins / World Surfer</span>
-
-                            </h5>
-                        </div>
+                        @foreach($book->testimonials as $testimonial)
+                            <div>
+                                <h5 style="color: #{{ $book->theme->font_color }};">
+                                    “{{ $testimonial->message }}”
+                                    <span>{{ $testimonial->names }} - {{ $testimonial->job_title }}</span>
+                                </h5>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
