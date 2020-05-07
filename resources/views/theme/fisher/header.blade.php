@@ -12,9 +12,9 @@
             </div>
             <div class="col-md-6 col-sm-6">
                 <div class="block wow fadeInRight" data-wow-delay="1s">
-                    <h2 style="color: white; font-weight: bold">{{ ucwords($book->title) }}</h2>
-                    <h2>{{ ucwords($book->sub_title) }}</h2>
-                    <p>{{ $book->description }}</p>
+                    <h2 style="color: #{{ $book->theme->font_color }}; font-weight: bold">{{ ucwords($book->title) }}</h2>
+                    <h2 style="color: #{{ $book->theme->font_color }};">{{ ucwords($book->sub_title) }}</h2>
+                    <p style="color: #{{ $book->theme->font_color }};">{{ $book->description }}</p>
                     <div class="download-btn">
                         <button
                             class="btn btn-lg"
