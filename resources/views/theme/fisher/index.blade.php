@@ -39,7 +39,7 @@
 
 @include('theme.fisher.topics')
 
-@include('theme.fisher.services')
+@include('theme.fisher.offer')
 
 @include('theme.fisher.testimonial')
 

@@ -20,6 +20,7 @@ class CreateBooksTable extends Migration
             $table->string('promotional_title', 255);
             $table->string('description', 300);
             $table->boolean('status')->default(false);
+            $table->double('price');
             $table->bigInteger('category_id', false, true);
             $table->string('slug')->index()->unique();
             $table->string('isbn')->index()->unique();

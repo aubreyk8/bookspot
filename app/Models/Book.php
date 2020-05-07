@@ -26,6 +26,7 @@ class Book extends Model
         'sub_title',
         'promotional_title',
         'description',
+        'price',
         'category_id',
         'slug',
         'isbn',
