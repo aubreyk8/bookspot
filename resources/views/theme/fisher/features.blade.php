@@ -3,8 +3,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="title wow pulse" data-wow-delay=".5s">
-                    <h2>{{ $book->promotional_title }}</h2>
-                    <p>Get Your Copy Today!</p>
+                    <h2>Whats Inside</h2>
                 </div>
             </div>
         </div>
