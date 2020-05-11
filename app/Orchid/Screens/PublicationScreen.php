@@ -2,12 +2,15 @@
 
 namespace App\Orchid\Screens;
 
+use App\Topic;
 use App\Reviewer;
 use App\Models\Book;
 use App\Testimonial;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use App\Orchid\Layouts\Content\PublicationFormLayout;
+use App\Orchid\Layouts\Content\PublicationContentLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialListLayout;
 use App\Orchid\Layouts\Reviewers\PublicationReviewEditLayout;
@@ -42,6 +45,7 @@ class PublicationScreen extends Screen
     {
         return [
             'books' => Book::all(),
+            'topics' => Topic::paginate(),
             'reviewers' => Reviewer::paginate(5),
             'testimonials' => Testimonial::paginate(5),
         ];
@@ -67,6 +71,12 @@ class PublicationScreen extends Screen
         return [
             Layout::tabs([
                 'Publication Info' => PublicationReviewEditLayout::class,
+                'Publication Content' => Layout::columns(
+                    [
+                        PublicationFormLayout::class,
+                        PublicationContentLayout::class,
+                    ]
+                ),
                 'Publication Review' => Layout::columns(
                     [
                         PublicationReviewEditLayout::class,
