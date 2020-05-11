@@ -33,7 +33,15 @@ class TestimonialLayout extends Table
                     ->icon('icon-menu')
                     ->list([
                         Button::make('Edit'),
-                        Button::make('Delete'),
+                        Button::make('Delete')
+                            ->icon('icon-close')
+                            ->method('removeTestimonial')
+                            ->parameters([
+                                'action' => [
+                                    'id' => $testimonial->id,
+                                    'book_id' => $testimonial->book_id,
+                                ]
+                            ]),
                     ]);
             })
         ];

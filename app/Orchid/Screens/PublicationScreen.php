@@ -118,7 +118,6 @@ class PublicationScreen extends Screen
                 ]
             );
 
-
             $tabbedView['Publication Review'] = Layout::columns(
                 [
                     PublicationReviewFormLayout::class,
@@ -235,8 +234,19 @@ class PublicationScreen extends Screen
         return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
 
-    public function removeTestimonial()
+    /**
+     * @param Request $request
+     * @param TestimonialRepository $repository
+     * @return RedirectResponse
+     */
+    public function removeTestimonial(Request $request, TestimonialRepository $repository): RedirectResponse
     {
+        $inputs = $request->input('action');
 
+        $repository->remove($inputs['id']);
+
+        Alert::warning('Testimonial has been removed');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
 }
