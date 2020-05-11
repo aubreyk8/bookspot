@@ -2,22 +2,22 @@
 
 namespace App\Orchid\Screens;
 
-use App\Reviewer;
-use App\Testimonial;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
 use Orchid\Support\Facades\Alert;
-use App\Http\Requests\PublicationRequest;
 use App\Repositories\TopicRepository;
 use Illuminate\Http\RedirectResponse;
 use App\Repositories\ReviewerRepository;
-use App\Repositories\PublicationRepository;
+use App\Http\Requests\PublicationRequest;
 use App\Orchid\Layouts\Topic\TopicLayout;
+use App\Repositories\PublicationRepository;
+use App\Repositories\TestimonialRepository;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
 use App\Http\Requests\PublicationReviewRequest;
 use App\Http\Requests\PublicationTopicsRequest;
+use App\Http\Requests\PublicationTestimonialRequest;
 use App\Orchid\Layouts\Testimonials\TestimonialLayout;
 use App\Orchid\Layouts\Publishing\PublicationFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialFormLayout;
@@ -71,7 +71,7 @@ class PublicationScreen extends Screen
             'book' => $this->bookLocator->getBook(),
             'topics' => $this->bookLocator->getBookTopics(),
             'reviewers' => $this->bookLocator->getBookReviewers(),
-            'testimonials' => Testimonial::paginate(5),
+            'testimonials' => $this->bookLocator->getBookTestimonials(),
         ];
     }
 
@@ -215,5 +215,28 @@ class PublicationScreen extends Screen
         Alert::warning('Review has been deleted');
 
         return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+    }
+
+    /**
+     * @param PublicationTestimonialRequest $request
+     * @param TestimonialRepository $repository
+     * @return RedirectResponse
+     */
+    public function saveTestimonial(
+        PublicationTestimonialRequest $request,
+        TestimonialRepository $repository
+    ): RedirectResponse {
+        $inputs = $request->toArray()['testimonial'];
+
+        $repository->persist($inputs);
+
+        Alert::success('Testimonial has been added');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+    }
+
+    public function removeTestimonial()
+    {
+
     }
 }

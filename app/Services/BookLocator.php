@@ -50,11 +50,19 @@ class BookLocator
     }
 
     /**
-     * @return mixed
+     * @return Collection
      */
     public function getBookReviewers(): Collection
     {
         return $this->getBook()->reviewer;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getBookTestimonials(): Collection
+    {
+        return  $this->getBook()->testimonials;
     }
 
     public function clear(): void

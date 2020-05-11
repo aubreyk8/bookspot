@@ -38,6 +38,8 @@ class TestimonialRepository implements Repository
         $testimonial = isset($inputs['id']) ? Testimonial::find($inputs['id']) : new Testimonial();
         $testimonial->fill($inputs);
         $testimonial->save();
+
+        return  $testimonial;
     }
 
     /**

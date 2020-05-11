@@ -50,13 +50,15 @@ class TestimonialFormLayout extends Rows
             TextArea::make('testimonial.message')
                 ->title('Message')
                 ->placeholder('Message')
-                ->horizontal(),
+                ->horizontal()
+                ->rows(6),
             Input::make('testimonial.book_id')
                 ->type('hidden')
                 ->value($this->book_id),
             Button::make('submit')
                 ->class('btn btn-primary')
-                ->icon('icon-save'),
+                ->icon('icon-save')
+                ->method('saveTestimonial'),
         ];
     }
 }
