@@ -3,6 +3,7 @@
 namespace App\Orchid\Screens;
 
 use App\Models\Book;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
@@ -55,12 +56,10 @@ class PublishingScreen extends Screen
     public function commandBar(): array
     {
         return [
-            ModalToggle::make('Upload')
+            Link::make('Add Publication')
+                ->icon('icon-plus')
                 ->class('btn btn-primary')
-                ->icon('icon-cloud-upload')
-                ->modal('publishAsyncModal')
-                ->method('createPublication')
-                ->modalTitle('Publish A Book')
+                ->route('platform.publication')
         ];
     }
 

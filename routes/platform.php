@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Orchid\Screens\ReviewsScreen;
 use App\Orchid\Screens\DashboardScreen;
 use App\Orchid\Screens\PublishingScreen;
+use App\Orchid\Screens\PublicationScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
 use App\Orchid\Screens\User\UserEditScreen;
@@ -28,6 +29,7 @@ Route::screen('/dashboard', DashboardScreen::class)->name('platform.main');
 Route::screen('publish', PublishingScreen::class)->name('platform.publishing');
 Route::screen('sales', SalesScreen::class)->name('platform.sales');
 Route::screen('reviews', ReviewsScreen::class)->name('platform.reviews');
+Route::screen('publication', PublicationScreen::class)->name('platform.publication');
 
 // Users...
 Route::screen('users/{users}/edit', UserEditScreen::class)->name('platform.systems.users.edit');

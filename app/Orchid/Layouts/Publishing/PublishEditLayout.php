@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Publishing;
 
 use App\Models\Category;
+use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
@@ -63,7 +64,8 @@ class PublishEditLayout extends Rows
             Upload::make('book.published_book')
                 ->acceptedFiles('application/pdf')
                 ->groups('publications')
-                ->maxFiles(1)
+                ->maxFiles(1),
+            Button::make('Submit'),
         ];
     }
 }
