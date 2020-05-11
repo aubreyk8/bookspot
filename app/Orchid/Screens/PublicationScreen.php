@@ -200,4 +200,20 @@ class PublicationScreen extends Screen
 
         return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
+
+    /**
+     * @param Request $request
+     * @param ReviewerRepository $repository
+     * @return RedirectResponse
+     */
+    public function removeReview(Request $request, ReviewerRepository $repository): RedirectResponse
+    {
+        $inputs = $request->input('action');
+
+        $repository->remove($inputs['id']);
+
+        Alert::warning('Review has been deleted');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+    }
 }
