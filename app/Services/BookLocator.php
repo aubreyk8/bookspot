@@ -49,6 +49,14 @@ class BookLocator
         return $this->getBook()->topics;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getBookReviewers(): Collection
+    {
+        return $this->getBook()->reviewer;
+    }
+
     public function clear(): void
     {
         Session::remove('book_id');

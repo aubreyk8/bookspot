@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Layouts\Reviewers;
 
+use App\Services\BookLocator;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Actions\Button;
@@ -14,6 +15,21 @@ use Orchid\Screen\Fields\TextArea;
  */
 class PublicationReviewFormLayout extends Rows
 {
+    /**
+     * @var int|null
+     */
+    public int $book_id;
+
+    /**
+     * PublicationReviewFormLayout constructor.
+     * @param BookLocator $bookLocator
+     * @param array $layouts
+     */
+    public function __construct(BookLocator $bookLocator, array $layouts = [])
+    {
+        parent::__construct($layouts);
+        $this->book_id = $bookLocator->getBookId();
+    }
 
     /**
      * @inheritDoc
@@ -21,6 +37,8 @@ class PublicationReviewFormLayout extends Rows
     protected function fields(): array
     {
         return [
+            Input::make('reviewer.id')
+                ->type('hidden'),
             Input::make('reviewer.names')
                 ->type('text')
                 ->title('Names')
@@ -47,7 +65,13 @@ class PublicationReviewFormLayout extends Rows
                 ->horizontal()
                 ->rows(8)
                 ->maxlength(255),
-            Cropper::make('image')->height(50),
+            Cropper::make('reviewer.image')
+                ->height(50)
+                ->title('Photo')
+                ->horizontal(),
+            Input::make('reviewer.book_id')
+                ->type('hidden')
+                ->value($this->book_id),
             Button::make('submit')
                 ->class('btn btn-primary pull-center')
                 ->icon('icon-save')

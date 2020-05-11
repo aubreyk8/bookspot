@@ -8,19 +8,21 @@ use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
+use Orchid\Support\Facades\Alert;
 use App\Http\Requests\BookRequest;
 use App\Repository\TopicRepository;
 use Illuminate\Http\RedirectResponse;
+use App\Repository\ReviewerRepository;
 use App\Repository\PublicationRepository;
 use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
+use App\Http\Requests\PublicationReviewRequest;
 use App\Http\Requests\PublicationTopicsRequest;
 use App\Orchid\Layouts\Testimonials\TestimonialLayout;
 use App\Orchid\Layouts\Publishing\PublicationFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialFormLayout;
 use App\Orchid\Layouts\Reviewers\PublicationReviewerLayout;
 use App\Orchid\Layouts\Reviewers\PublicationReviewFormLayout;
-use Orchid\Support\Facades\Alert;
 
 /**
  * Class PublicationScreen
@@ -68,7 +70,7 @@ class PublicationScreen extends Screen
         return [
             'book' => $this->bookLocator->getBook(),
             'topics' => $this->bookLocator->getBookTopics(),
-            'reviewers' => Reviewer::paginate(5),
+            'reviewers' => $this->bookLocator->getBookReviewers(),
             'testimonials' => Testimonial::paginate(5),
         ];
     }
@@ -183,14 +185,18 @@ class PublicationScreen extends Screen
         return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
 
-    public function saveReviews(Request $request, TopicRepository $repository): RedirectResponse
+    /**
+     * @param PublicationReviewRequest $request
+     * @param ReviewerRepository $repository
+     * @return RedirectResponse
+     */
+    public function saveReviews(PublicationReviewRequest $request, ReviewerRepository $repository): RedirectResponse
     {
-        $inputs = $request->input('action');
-        dd($inputs);
+        $inputs = $request->input('reviewer');
 
-        $repository->remove($inputs['id']);
+        $repository->persist($inputs);
 
-        Alert::success('Chapter has been removed');
+        Alert::success('Reviewer has been saved');
 
         return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
