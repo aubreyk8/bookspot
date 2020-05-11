@@ -2,11 +2,11 @@
 
 namespace App\Orchid\Layouts\Publishing;
 
-use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
+use Orchid\Screen\Actions\Button;
 
-class PublicationEditLayout extends Rows
+class PublicationFormLayout extends Rows
 {
 
     /**

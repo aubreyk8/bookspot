@@ -9,12 +9,12 @@ use App\Testimonial;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
-use App\Orchid\Layouts\Content\PublicationFormLayout;
-use App\Orchid\Layouts\Content\PublicationContentLayout;
+use App\Orchid\Layouts\Topic\TopicFormLayout;
+use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialFormLayout;
-use App\Orchid\Layouts\Testimonials\TestimonialListLayout;
-use App\Orchid\Layouts\Reviewers\PublicationReviewEditLayout;
-use App\Orchid\Layouts\Reviewers\PublicationReviewerListLayout;
+use App\Orchid\Layouts\Testimonials\TestimonialLayout;
+use App\Orchid\Layouts\Reviewers\PublicationReviewFormLayout;
+use App\Orchid\Layouts\Reviewers\PublicationReviewerLayout;
 
 /**
  * Class PublicationScreen
@@ -70,22 +70,22 @@ class PublicationScreen extends Screen
     {
         return [
             Layout::tabs([
-                'Publication Info' => PublicationReviewEditLayout::class,
+                'Publication Info' => PublicationReviewFormLayout::class,
                 'Publication Content' => Layout::columns(
                     [
-                        PublicationFormLayout::class,
-                        PublicationContentLayout::class,
+                        TopicFormLayout::class,
+                        TopicLayout::class,
                     ]
                 ),
                 'Publication Review' => Layout::columns(
                     [
-                        PublicationReviewEditLayout::class,
-                        PublicationReviewerListLayout::class,
+                        PublicationReviewFormLayout::class,
+                        PublicationReviewerLayout::class,
                     ],
                 ),
                 'Testimonials' => Layout::columns([
                     TestimonialFormLayout::class,
-                    TestimonialListLayout::class,
+                    TestimonialLayout::class,
                 ])
             ]),
         ];

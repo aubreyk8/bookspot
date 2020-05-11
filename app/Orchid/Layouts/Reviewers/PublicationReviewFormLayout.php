@@ -9,10 +9,10 @@ use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\TextArea;
 
 /**
- * Class PublicationReviewEditLayout
+ * Class PublicationReviewFormLayout
  * @package App\Orchid\Layouts\Publishing
  */
-class PublicationReviewEditLayout extends Rows
+class PublicationReviewFormLayout extends Rows
 {
 
     /**

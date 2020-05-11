@@ -12,7 +12,7 @@ use Orchid\Screen\Actions\DropDown;
  * Class TestimonialListLayout
  * @package App\Orchid\Layouts\Testimonials
  */
-class TestimonialListLayout extends Table
+class TestimonialLayout extends Table
 {
 
     public $target = 'testimonials';

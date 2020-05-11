@@ -9,7 +9,7 @@ use Orchid\Screen\Actions\Button;
 use App\Orchid\Type\IndicatorType;
 use Orchid\Screen\Actions\DropDown;
 
-class PublicationReviewerListLayout extends Table
+class PublicationReviewerLayout extends Table
 {
 
     /**

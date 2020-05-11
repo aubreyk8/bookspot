@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Layouts\Content;
+namespace App\Orchid\Layouts\Topic;
 
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Rows;
@@ -10,7 +10,7 @@ use Orchid\Screen\Fields\TextArea;
  * Class PublicationFormLayout
  * @package App\Orchid\Layouts\Content
  */
-class PublicationFormLayout extends Rows
+class TopicFormLayout extends Rows
 {
     /**
      * @inheritDoc
