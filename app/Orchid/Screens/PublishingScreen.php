@@ -9,7 +9,7 @@ use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
-use App\Orchid\Layouts\Publishing\PublishListLayout;
+use App\Orchid\Layouts\Publishing\PublicationLayout;
 
 /**
  * Class PublishingScreen
@@ -67,7 +67,7 @@ class PublishingScreen extends Screen
     public function layout(): array
     {
         return [
-            PublishListLayout::class,
+            PublicationLayout::class,
         ];
     }
 

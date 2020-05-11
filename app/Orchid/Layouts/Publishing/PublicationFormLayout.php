@@ -12,10 +12,10 @@ use Orchid\Screen\Fields\Cropper;
 use Orchid\Screen\Fields\TextArea;
 
 /**
- * Class PublishEditLayout
+ * Class PublicationFormLayout
  * @package App\Orchid\Layouts\Publishing
  */
-class PublishEditLayout extends Rows
+class PublicationFormLayout extends Rows
 {
 
     /**

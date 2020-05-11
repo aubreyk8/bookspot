@@ -11,10 +11,10 @@ use App\Orchid\Type\IndicatorType;
 use Orchid\Screen\Actions\DropDown;
 
 /**
- * Class PublishListLayout
+ * Class PublicationLayout
  * @package App\Orchid\Layouts\Publishing
  */
-class PublishListLayout extends Table
+class PublicationLayout extends Table
 {
     /**
      * @var string
