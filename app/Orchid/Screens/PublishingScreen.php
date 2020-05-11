@@ -2,17 +2,13 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Book;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Modal;
+use Orchid\Screen\Actions\Link;
 use Orchid\Support\Facades\Toast;
 use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Screen\Actions\ModalToggle;
-use App\Orchid\Layouts\Publishing\PublishEditLayout;
 use App\Orchid\Layouts\Publishing\PublishListLayout;
 
 /**
@@ -72,36 +68,7 @@ class PublishingScreen extends Screen
     {
         return [
             PublishListLayout::class,
-            Layout::modal('publishAsyncModal', [
-                PublishEditLayout::class
-            ])->async('asyncGetBook')
-              ->size(Modal::SIZE_LG)
         ];
-    }
-
-    /**
-     * @param Request $request
-     * @return array
-     */
-    public function asyncGetBook(Request $request)
-    {
-        return [
-            'book' => Book::findOrFail($request->input('id'))
-        ];
-    }
-
-    /**
-     * @param Request $request
-     * @param PublishingManager $manager
-     * @return RedirectResponse
-     */
-    public function createPublication(Request $request, PublishingManager $manager)
-    {
-        $manager->createPublication($request->input('book'));
-
-        Toast::success('Publication has been created');
-
-        return redirect()->back();
     }
 
     /**
