@@ -2,23 +2,25 @@
 
 namespace App\Orchid\Screens;
 
-use App\Repository\PublicationRepository;
-use App\Topic;
 use App\Reviewer;
-use App\Models\Book;
 use App\Testimonial;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
 use App\Http\Requests\BookRequest;
+use App\Repository\TopicRepository;
+use Illuminate\Http\RedirectResponse;
+use App\Repository\PublicationRepository;
 use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
+use App\Http\Requests\PublicationTopicsRequest;
 use App\Orchid\Layouts\Testimonials\TestimonialLayout;
 use App\Orchid\Layouts\Publishing\PublicationFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialFormLayout;
 use App\Orchid\Layouts\Reviewers\PublicationReviewerLayout;
 use App\Orchid\Layouts\Reviewers\PublicationReviewFormLayout;
+use Orchid\Support\Facades\Alert;
 
 /**
  * Class PublicationScreen
@@ -64,8 +66,8 @@ class PublicationScreen extends Screen
     public function query(): array
     {
         return [
-            'books' => Book::all(),
-            'topics' => Topic::paginate(),
+            'book' => $this->bookLocator->getBook(),
+            'topics' => $this->bookLocator->getBookTopics(),
             'reviewers' => Reviewer::paginate(5),
             'testimonials' => Testimonial::paginate(5),
         ];
@@ -133,15 +135,63 @@ class PublicationScreen extends Screen
         return $tabbedView;
     }
 
-    public function createOrEditBook(BookRequest $request, PublicationRepository $publicationRepository)
-    {
+    /**
+     * @param BookRequest $request
+     * @param PublicationRepository $publicationRepository
+     * @return RedirectResponse
+     */
+    public function createOrEditBook(
+        BookRequest $request,
+        PublicationRepository $publicationRepository
+    ): RedirectResponse {
        $book = $publicationRepository->persist($request->toArray()['book']);
 
         return redirect()->route('platform.publication', ['id' => $book->id]);
     }
 
-    public function saveReviews(Request $request)
+    /**
+     * @param PublicationTopicsRequest $request
+     * @param TopicRepository $repository
+     * @return RedirectResponse
+     */
+    public function saveBookTopics(
+        PublicationTopicsRequest $request,
+        TopicRepository $repository
+    ): RedirectResponse {
+        $inputs = $request->toArray()['topic'];
+
+        $repository->persist($inputs);
+
+        Alert::success('Chapter has been saved');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+    }
+
+    /**
+     * @param Request $request
+     * @param TopicRepository $repository
+     * @return RedirectResponse
+     */
+    public function removeTopic(Request $request, TopicRepository $repository): RedirectResponse
     {
-        dd($request->all());
+        $inputs = $request->input('action');
+
+        $repository->remove($inputs['id']);
+
+        Alert::warning('Chapter has been removed');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+    }
+
+    public function saveReviews(Request $request, TopicRepository $repository): RedirectResponse
+    {
+        $inputs = $request->input('action');
+        dd($inputs);
+
+        $repository->remove($inputs['id']);
+
+        Alert::success('Chapter has been removed');
+
+        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
     }
 }

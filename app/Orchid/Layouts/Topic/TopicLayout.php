@@ -2,8 +2,11 @@
 
 namespace App\Orchid\Layouts\Topic;
 
+use App\Topic;
 use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Actions\DropDown;
 
 /**
  * Class PublicationContentLayout
@@ -20,7 +23,21 @@ class TopicLayout extends Table
     {
         return [
             TD::set('topic'),
-            TD::set('brief_description')
+            TD::set('brief_description'),
+            TD::set('action', 'Action')->render(function (Topic $topic) {
+                return DropDown::make()
+                    ->icon('icon-menu')
+                    ->list([
+                        Button::make('Remove')
+                            ->icon('icon-close')
+                            ->method('removeTopic')->parameters([
+                                'action' => [
+                                    'id' => $topic->id,
+                                    'book_id' => $topic->book_id
+                                ]
+                            ])
+                    ]);
+            })
         ];
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Book;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
 
 /**
@@ -38,6 +39,14 @@ class BookLocator
     public function getBook(): Book
     {
         return Session::has('book_id') ? Book::find(Session::get('book_id')) : null;
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getBookTopics(): Collection
+    {
+        return $this->getBook()->topics;
     }
 
     public function clear(): void
