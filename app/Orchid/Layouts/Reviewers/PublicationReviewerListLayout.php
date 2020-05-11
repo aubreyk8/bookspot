@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Orchid\Layouts\Publishing;
+namespace App\Orchid\Layouts\Reviewers;
 
 use App\Reviewer;
 use Orchid\Screen\TD;

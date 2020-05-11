@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Orchid\Layouts\Publishing;
+namespace App\Orchid\Layouts\Reviewers;
 
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Layouts\Rows;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Fields\Cropper;
-use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\TextArea;
-use Orchid\Screen\Layouts\Rows;
 
 /**
  * Class PublicationReviewEditLayout
