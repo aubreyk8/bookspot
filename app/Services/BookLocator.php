@@ -36,7 +36,7 @@ class BookLocator
     /**
      * @return Book
      */
-    public function getBook(): Book
+    public function getBook(): ?Book
     {
         return Session::has('book_id') ? Book::find(Session::get('book_id')) : null;
     }
@@ -46,7 +46,7 @@ class BookLocator
      */
     public function getBookTopics(): Collection
     {
-        return $this->getBook()->topics;
+        return $this->hasBook() ? $this->getBook()->topics : new Collection();
     }
 
     /**
@@ -54,7 +54,7 @@ class BookLocator
      */
     public function getBookReviewers(): Collection
     {
-        return $this->getBook()->reviewer;
+        return $this->hasBook() ? $this->getBook()->reviewer : new Collection();
     }
 
     /**
@@ -62,7 +62,7 @@ class BookLocator
      */
     public function getBookTestimonials(): Collection
     {
-        return  $this->getBook()->testimonials;
+        return  $this->hasBook() ? $this->getBook()->testimonials : new Collection();
     }
 
     public function clear(): void
