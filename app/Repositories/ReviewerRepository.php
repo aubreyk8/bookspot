@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Reviewer;
+use App\Constants\DashboardView;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -14,7 +15,7 @@ class ReviewerRepository implements Repository
      */
     public function list(string $needle = null, string $column = 'id', array $options = []): LengthAwarePaginator
     {
-        return Reviewer::where($column, $needle)->paginate();
+        return Reviewer::where($column, $needle)->paginate(DashboardView::PAGINATION_LENGTH);
     }
 
     /**

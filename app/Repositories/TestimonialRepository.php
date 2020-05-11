@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Testimonial;
+use App\Constants\DashboardView;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -18,7 +19,7 @@ class TestimonialRepository implements Repository
      */
     public function list(string $needle = null, string $column = 'id', array $options = []): LengthAwarePaginator
     {
-        return Testimonial::where($column, $needle)->paginate();
+        return Testimonial::where($column, $needle)->paginate(DashboardView::PAGINATION_LENGTH);
     }
 
     /**
