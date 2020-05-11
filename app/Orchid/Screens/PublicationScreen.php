@@ -9,7 +9,7 @@ use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
 use Orchid\Support\Facades\Alert;
-use App\Http\Requests\BookRequest;
+use App\Http\Requests\PublicationRequest;
 use App\Repositories\TopicRepository;
 use Illuminate\Http\RedirectResponse;
 use App\Repositories\ReviewerRepository;
@@ -138,12 +138,12 @@ class PublicationScreen extends Screen
     }
 
     /**
-     * @param BookRequest $request
+     * @param PublicationRequest $request
      * @param PublicationRepository $publicationRepository
      * @return RedirectResponse
      */
     public function createOrEditBook(
-        BookRequest $request,
+        PublicationRequest $request,
         PublicationRepository $publicationRepository
     ): RedirectResponse {
        $book = $publicationRepository->persist($request->toArray()['book']);
