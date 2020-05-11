@@ -21,12 +21,12 @@ class PublicationFormLayout extends Rows
     /**
      * @var int
      */
-    private int $book_id;
+    private ?int $book_id;
 
     public function __construct(array $layouts = [], BookLocator $bookLocator)
     {
         parent::__construct($layouts);
-        $this->book_id = $bookLocator->hasBook() ?? $bookLocator->getBookId();
+        $this->book_id = $bookLocator->getBookId();
     }
 
     /**
@@ -81,12 +81,13 @@ class PublicationFormLayout extends Rows
                 ->width(ENV('CROPPER_IMAGE_WIDTH', 500))
                 ->height(ENV('CROPPER_IMAGE_HEIGHT', 300))
                 ->accept('image/*')
-                ->horizontal(),
+                ->horizontal()->title('Cover photo'),
             Upload::make('book.published_book')
                 ->acceptedFiles('application/pdf')
                 ->groups('publications')
                 ->maxFiles(1)
-                ->horizontal(),
+                ->horizontal()
+                ->title('eBook (PDF)'),
             Button::make('Save')
                 ->class('btn btn-primary')
                 ->icon('icon-save')

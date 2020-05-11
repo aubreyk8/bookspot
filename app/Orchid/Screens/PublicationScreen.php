@@ -2,6 +2,7 @@
 
 namespace App\Orchid\Screens;
 
+use App\Repository\PublicationRepository;
 use App\Topic;
 use App\Reviewer;
 use App\Models\Book;
@@ -10,6 +11,7 @@ use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
+use App\Http\Requests\BookRequest;
 use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialLayout;
@@ -131,9 +133,11 @@ class PublicationScreen extends Screen
         return $tabbedView;
     }
 
-    public function createOrEditBook(Request $request)
+    public function createOrEditBook(BookRequest $request, PublicationRepository $publicationRepository)
     {
-        dd($request->all());
+       $book = $publicationRepository->persist($request->toArray()['book']);
+
+        return redirect()->route('platform.publication', ['id' => $book->id]);
     }
 
     public function saveReviews(Request $request)
