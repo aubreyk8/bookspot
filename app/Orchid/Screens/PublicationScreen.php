@@ -9,6 +9,7 @@ use App\Testimonial;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
+use App\Services\BookLocator;
 use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
 use App\Orchid\Layouts\Testimonials\TestimonialLayout;
@@ -24,6 +25,11 @@ use App\Orchid\Layouts\Reviewers\PublicationReviewFormLayout;
 class PublicationScreen extends Screen
 {
     /**
+     * @var BookLocator
+     */
+    public BookLocator $bookLocator;
+
+    /**
      * Display header name.
      *
      * @var string
@@ -36,6 +42,17 @@ class PublicationScreen extends Screen
      * @var string
      */
     public $description = 'New Book';
+
+    public function __construct(Request $request = null, BookLocator $bookLocator)
+    {
+        parent::__construct($request);
+
+        $this->bookLocator = $bookLocator;
+
+        if (isset($_GET['id'])) {
+            $bookLocator->init($_GET['id']);
+        }
+    }
 
     /**
      * Query data.
@@ -70,28 +87,48 @@ class PublicationScreen extends Screen
     public function layout(): array
     {
         return [
-            Layout::tabs([
-                'Publication Info' => PublicationFormLayout::class,
-                'Publication Content' => Layout::columns(
-                    [
-                        TopicFormLayout::class,
-                        TopicLayout::class,
-                    ]
-                ),
-                'Publication Review' => Layout::columns(
-                    [
-                        PublicationReviewFormLayout::class,
-                        PublicationReviewerLayout::class,
-                    ],
-                ),
-                'Testimonials' => Layout::columns(
-                    [
-                        TestimonialFormLayout::class,
-                        TestimonialLayout::class,
-                    ]
-                )
-            ]),
+            Layout::tabs($this->buildTabbedView()),
         ];
+    }
+
+    private function buildTabbedView(): array
+    {
+        $tabbedView = [];
+
+        $tabbedView['Publication Detail'] = PublicationFormLayout::class;
+
+        if ($this->bookLocator->hasBook()) {
+            $tabbedView['Publication Content'] = Layout::columns(
+                [
+                    TopicFormLayout::class,
+                    TopicLayout::class,
+                ]
+            );
+
+            $tabbedView['Publication Review'] = Layout::columns(
+                [
+                    PublicationReviewFormLayout::class,
+                    PublicationReviewerLayout::class,
+                ]
+            );
+
+
+            $tabbedView['Publication Review'] = Layout::columns(
+                [
+                    PublicationReviewFormLayout::class,
+                    PublicationReviewerLayout::class,
+                ]
+            );
+
+            $tabbedView['Testimonials'] = Layout::columns(
+                [
+                    TestimonialFormLayout::class,
+                    TestimonialLayout::class,
+                ]
+            );
+        }
+
+        return $tabbedView;
     }
 
     public function createOrEditBook(Request $request)

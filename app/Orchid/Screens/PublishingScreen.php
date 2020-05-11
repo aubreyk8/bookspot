@@ -5,8 +5,9 @@ namespace App\Orchid\Screens;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
-use Orchid\Screen\Actions\Link;
+use App\Services\BookLocator;
 use Orchid\Support\Facades\Toast;
+use Orchid\Screen\Actions\Button;
 use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
 use App\Orchid\Layouts\Publishing\PublicationLayout;
@@ -52,10 +53,10 @@ class PublishingScreen extends Screen
     public function commandBar(): array
     {
         return [
-            Link::make('Add Publication')
-                ->icon('icon-plus')
+            Button::make('Add Publication')
+                ->method('addPublication')
                 ->class('btn btn-primary')
-                ->route('platform.publication')
+                ->icon('icon-plus')
         ];
     }
 
@@ -69,6 +70,16 @@ class PublishingScreen extends Screen
         return [
             PublicationLayout::class,
         ];
+    }
+
+    /**
+     * @param BookLocator $bookLocator
+     * @return RedirectResponse
+     */
+    public function addPublication(BookLocator $bookLocator)
+    {
+        $bookLocator->clear();
+        return redirect()->route('platform.publication');
     }
 
     /**

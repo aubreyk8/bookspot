@@ -3,6 +3,7 @@
 namespace App\Orchid\Layouts\Publishing;
 
 use App\Models\Category;
+use App\Services\BookLocator;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Upload;
 use Orchid\Screen\Layouts\Rows;
@@ -17,6 +18,16 @@ use Orchid\Screen\Fields\TextArea;
  */
 class PublicationFormLayout extends Rows
 {
+    /**
+     * @var int
+     */
+    private int $book_id;
+
+    public function __construct(array $layouts = [], BookLocator $bookLocator)
+    {
+        parent::__construct($layouts);
+        $this->book_id = $bookLocator->hasBook() ?? $bookLocator->getBookId();
+    }
 
     /**
      * @inheritDoc
@@ -25,47 +36,61 @@ class PublicationFormLayout extends Rows
     {
         return [
             Input::make('book.id')
-                ->type('hidden'),
+                ->type('hidden')
+                ->value($this->book_id),
             Input::make('book.isbn')
                 ->type('text')
                 ->max(255)
-                ->required()
-                ->title(__('ISBN'))
-                ->placeholder(__('ISBN'))
                 ->horizontal()
-                ->required(),
+                ->title(__('ISBN'))
+                ->placeholder(__('ISBN')),
             Input::make('book.title')
                 ->type('text')
                 ->max(255)
-                ->required()
-                ->title(__('Title'))
-                ->placeholder(__('Title'))
                 ->horizontal()
-                ->required(),
+                ->title(__('Title'))
+                ->placeholder(__('Title')),
+            Input::make('book.sub_title')
+                ->type('text')
+                ->title('Sub Title')
+                ->placeholder('Sub Title')
+                ->horizontal(),
+            Input::make('book.promotional_title')
+                ->type('text')
+                ->title('Promotional Title')
+                ->placeholder('Promotional Title')
+                ->horizontal(),
+            Input::make('book.price')
+                ->type('number')
+                ->title('Price')
+                ->placeholder('Price')
+                ->horizontal()->step(0.01),
             TextArea::make('book.description')
                 ->title('Description')
                 ->type('textarea')
                 ->max(300)
                 ->rows(5)
-                ->required()
                 ->horizontal()
                 ->placeholder('Description'),
             Select::make('book.category_id')
                 ->fromModel(Category::class, 'name', 'id')
                 ->title('Category')
                 ->empty('No select', 0)
-                ->horizontal()
-                ->required(),
+                ->horizontal(),
             Cropper::make('book.cover_image')
                 ->width(ENV('CROPPER_IMAGE_WIDTH', 500))
                 ->height(ENV('CROPPER_IMAGE_HEIGHT', 300))
                 ->accept('image/*')
-                ->required(),
+                ->horizontal(),
             Upload::make('book.published_book')
                 ->acceptedFiles('application/pdf')
                 ->groups('publications')
-                ->maxFiles(1),
-            Button::make('Submit'),
+                ->maxFiles(1)
+                ->horizontal(),
+            Button::make('Save')
+                ->class('btn btn-primary')
+                ->icon('icon-save')
+                ->method('createOrEditBook'),
         ];
     }
 }
