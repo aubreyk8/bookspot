@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repositories;
 
-use App\Topic;
+use App\Reviewer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-/**
- * Class TopicRepository
- * @package App\Repository
- */
-class TopicRepository implements Repository
+class ReviewerRepository implements Repository
 {
 
     /**
@@ -18,7 +14,7 @@ class TopicRepository implements Repository
      */
     public function list(string $needle = null, string $column = 'id', array $options = []): LengthAwarePaginator
     {
-        return Topic::where($column, $needle)->paginate();
+        return Reviewer::where($column, $needle)->paginate();
     }
 
     /**
@@ -26,7 +22,7 @@ class TopicRepository implements Repository
      */
     public function find(string $needle, string $column = 'id', array $options = []): Model
     {
-        return Topic::findOrFail($needle);
+        return Reviewer::where($column, $needle)->get()->first();
     }
 
     /**
@@ -34,11 +30,11 @@ class TopicRepository implements Repository
      */
     public function persist(array $inputs): Model
     {
-        $topic = isset($inputs['id']) ? Topic::find($inputs['id']) : new Topic();
-        $topic->fill($inputs);
-        $topic->save();
+        $reviewer = isset($inputs['id']) ? Reviewer::find($inputs['id']) : new Reviewer();
+        $reviewer->fill($inputs);
+        $reviewer->save();
 
-        return $topic;
+        return $reviewer;
     }
 
     /**
@@ -46,7 +42,7 @@ class TopicRepository implements Repository
      */
     public function remove(int $id): void
     {
-        $topic = Topic::findOrFail($id);
-        $topic->delete();
+        $reviewer = Reviewer::findOrFail($id);
+        $reviewer->delete();
     }
 }
