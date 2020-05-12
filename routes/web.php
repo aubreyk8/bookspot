@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PublicController@index')->name('home');
 Route::get('/publication/{slug}', 'PublicController@publication')->name('publication');
 Route::get('/checkout/{slug}', 'PublicController@checkout')->name('checkout');
+Route::get('/checkout/payfast/success/{id}', 'PayFastController@success')->name('checkout.success');
+Route::get('/checkout/payfast/cancelled/{id}', 'PayFastController@cancelled')->name('checkout.cancelled');

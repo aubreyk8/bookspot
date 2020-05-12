@@ -10,5 +10,5 @@ use Illuminate\View\View;
  */
 interface PaymentInterface
 {
-    public function render(int $book_id): View;
+    public function render(int $book_id): string;
 }

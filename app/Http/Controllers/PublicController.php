@@ -48,8 +48,14 @@ class PublicController extends Controller
         return view('theme.fisher.index', compact('book', 'slug'));
     }
 
-    public function checkout(string $slug)
+    /**
+     * @param string $slug
+     * @return View
+     * @throws PublicationNotFoundException
+     */
+    public function checkout(string $slug): View
     {
-
+        $book = $this->publicationManager->fromSlug($slug);
+        return view('theme.fisher.checkout', compact('book', 'slug'));
     }
 }

@@ -9,6 +9,11 @@
                 <br/><br/>
             </div>
         </div>
+        @if(\Illuminate\Support\Facades\Route::getCurrentRoute()->getName() == 'checkout.cancelled')
+            <div class="alert alert-danger text-center">
+                Checkout process has been cancelled, please click pay now to try again!
+            </div>
+        @endif
         <div class="row">
             <div class="col-sm-12">
                 <table class="table">

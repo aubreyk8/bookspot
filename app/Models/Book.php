@@ -89,4 +89,12 @@ class Book extends Model
     {
         return $this->hasMany(Topic::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function order(): HasMany
+    {
+        return $this->hasMany(Book::class);
+    }
 }
