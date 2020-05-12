@@ -22,8 +22,10 @@ class TopicLayout extends Table
     protected function columns(): array
     {
         return [
-            TD::set('topic'),
-            TD::set('brief_description'),
+            TD::set('topic', 'Topic'),
+            TD::set('brief_description', 'Summary')->render(function (Topic $topic) {
+                return substr($topic->brief_description, 0, 80) . '...';
+            }),
             TD::set('action', 'Action')->render(function (Topic $topic) {
                 return DropDown::make()
                     ->icon('icon-menu')

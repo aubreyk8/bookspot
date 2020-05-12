@@ -46,8 +46,8 @@ class TopicFormLayout extends Rows
                 ->placeholder('Chapter')
                 ->horizontal(),
             TextArea::make('topic.brief_description')
-                ->title('Description')
-                ->placeholder('Description')
+                ->title('Brief Summary')
+                ->placeholder('Brief Summary')
                 ->rows(8)
                 ->horizontal(),
             Button::make('Save')
