@@ -54,10 +54,6 @@ class PublicationScreen extends Screen
         parent::__construct($request);
 
         $this->bookLocator = $bookLocator;
-
-        if (isset($_GET['id'])) {
-            $bookLocator->init($_GET['id']);
-        }
     }
 
     /**

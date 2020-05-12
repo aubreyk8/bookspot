@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Session;
  */
 class BookLocator
 {
-    /**
-     * @param int $id
-     */
-    public function init(int $id): void
+    private $book_id;
+
+    public function __construct()
     {
-        Session::put('book_id', $id);
+        if (isset($_GET['sequence_no'])) {
+            $this->book_id = base64_decode($_GET['sequence_no']);
+        }
     }
 
     /**
@@ -25,12 +26,12 @@ class BookLocator
      */
     public function hasBook(): bool
     {
-        return Session::has('book_id');
+        return isset($this->book_id);
     }
 
     public function getBookId(): ?int
     {
-        return Session::has('book_id') ? intval(Session::get('book_id')) : null;
+        return $this->book_id;
     }
 
     /**
@@ -38,7 +39,7 @@ class BookLocator
      */
     public function getBook(): ?Book
     {
-        return Session::has('book_id') ? Book::find(Session::get('book_id')) : null;
+        return $this->hasBook() ? Book::find($this->getBookId()) : null;
     }
 
     /**

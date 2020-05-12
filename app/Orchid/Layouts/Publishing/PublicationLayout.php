@@ -50,7 +50,7 @@ class PublicationLayout extends Table
                             ->route(
                                 'platform.publication',
                                 [
-                                    'id' => $book->id
+                                    'sequence_no' => base64_encode($book->id)
                                 ]
                             )
                             ->icon('icon-pencil'),
