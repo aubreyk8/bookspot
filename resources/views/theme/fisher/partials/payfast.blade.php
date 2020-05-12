@@ -15,11 +15,11 @@
 >
     <input type="hidden" name="cmd" value="_paynow">
     <input type="hidden" name="receiver" value="11097186">
-    <input type="hidden" name="item_name" value="Book Purchase">
-    <input type="hidden" name="amount" value="1500.00">
-    <input type="hidden" name="item_description" value="">
-    <input type="hidden" name="return_url" value="http://bookspot.local/payfast/success">
-    <input type="hidden" name="cancel_url" value="http://bookspot.local/payfast/cancelled">
+    <input type="hidden" name="item_name" value="eBook: {{ $book->title }}">
+    <input type="hidden" name="amount" value="{{ $book->price }}">
+    <input type="hidden" name="item_description" value="eBook: {{ $book->title }} by {{ $book->author->first_name }} {{ $book->author->last_name }}">
+    <input type="hidden" name="return_url" value="{{ route('checkout.success', ['id' => base64_encode($order->id)]) }}">
+    <input type="hidden" name="cancel_url" value="{{ route('checkout.cancelled', ['id' => base64_encode($order->id)]) }}">
 
     <table>
         <tr>

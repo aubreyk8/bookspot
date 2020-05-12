@@ -35,17 +35,17 @@
 </head>
 <body>
 
-@include('theme.fisher.header')
+@include('theme.fisher.partials.header')
 
-@include('theme.fisher.topics')
+@include('theme.fisher.partials.topics')
 
-@include('theme.fisher.offer')
+@include('theme.fisher.partials.offer')
 
-@include('theme.fisher.testimonial')
+@include('theme.fisher.partials.testimonial')
 
-@include('theme.fisher.reviewers')
+@include('theme.fisher.partials.reviewers')
 
-@include('theme.fisher.footer')
+@include('theme.fisher.partials.footer')
 
 </body>
 </html>
