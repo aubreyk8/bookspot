@@ -2,17 +2,15 @@
 
 namespace App\Orchid\Screens;
 
-use App\Models\Book;
 use Orchid\Screen\Screen;
 use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
-use Orchid\Screen\Layouts\Modal;
+use App\Services\BookLocator;
 use Orchid\Support\Facades\Toast;
+use Orchid\Screen\Actions\Button;
 use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
-use Orchid\Screen\Actions\ModalToggle;
-use App\Orchid\Layouts\Publishing\PublishEditLayout;
-use App\Orchid\Layouts\Publishing\PublishListLayout;
+use App\Orchid\Layouts\Publishing\PublicationLayout;
 
 /**
  * Class PublishingScreen
@@ -55,12 +53,10 @@ class PublishingScreen extends Screen
     public function commandBar(): array
     {
         return [
-            ModalToggle::make('Upload')
+            Button::make('Add Publication')
+                ->method('addPublication')
                 ->class('btn btn-primary')
-                ->icon('icon-cloud-upload')
-                ->modal('publishAsyncModal')
-                ->method('createPublication')
-                ->modalTitle('Publish A Book')
+                ->icon('icon-plus')
         ];
     }
 
@@ -72,37 +68,18 @@ class PublishingScreen extends Screen
     public function layout(): array
     {
         return [
-            PublishListLayout::class,
-            Layout::modal('publishAsyncModal', [
-                PublishEditLayout::class
-            ])->async('asyncGetBook')
-              ->size(Modal::SIZE_LG)
+            PublicationLayout::class,
         ];
     }
 
     /**
-     * @param Request $request
-     * @return array
-     */
-    public function asyncGetBook(Request $request)
-    {
-        return [
-            'book' => Book::findOrFail($request->input('id'))
-        ];
-    }
-
-    /**
-     * @param Request $request
-     * @param PublishingManager $manager
+     * @param BookLocator $bookLocator
      * @return RedirectResponse
      */
-    public function createPublication(Request $request, PublishingManager $manager)
+    public function addPublication(BookLocator $bookLocator)
     {
-        $manager->createPublication($request->input('book'));
-
-        Toast::success('Publication has been created');
-
-        return redirect()->back();
+        $bookLocator->clear();
+        return redirect()->route('platform.publication');
     }
 
     /**

@@ -4,17 +4,17 @@ namespace App\Orchid\Layouts\Publishing;
 
 use App\Models\Book;
 use Orchid\Screen\TD;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\Button;
 use App\Orchid\Type\IndicatorType;
 use Orchid\Screen\Actions\DropDown;
-use App\Orchid\Type\EditModalToggleType;
 
 /**
- * Class PublishListLayout
+ * Class PublicationLayout
  * @package App\Orchid\Layouts\Publishing
  */
-class PublishListLayout extends Table
+class PublicationLayout extends Table
 {
     /**
      * @var string
@@ -46,12 +46,14 @@ class PublishListLayout extends Table
                 return DropDown::make()
                     ->icon('icon-menu')
                     ->list([
-                        EditModalToggleType::make('Edit')
-                            ->icon('icon-pencil')
-                            ->modal('publishAsyncModal')
-                            ->modalTitle('Edit Publication')
-                            ->method('updatePublication')
-                            ->asyncParameters(['id' => $book->id]),
+                        Link::make('Edit')
+                            ->route(
+                                'platform.publication',
+                                [
+                                    'sequence_no' => base64_encode($book->id)
+                                ]
+                            )
+                            ->icon('icon-pencil'),
                         Button::make('Un Publish')
                             ->icon('icon-ban')
                             ->method('unPublishBook')
