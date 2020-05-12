@@ -53,7 +53,9 @@
                 <div class="block wow fadeInLeft" data-wow-delay="1.1s">
                     <div style="height: 80px;"></div>
                     <h3 style="color: green; font-weight: bold;">R{{ $book->price }} Only</h3>
-                    <img src="/images/buy-now-yellow.png" alt="Buy Now" height="130" width="300">
+                    <a href="{{ route('checkout', ['slug' => $slug]) }}">
+                        <img src="/images/buy-now-yellow.png" alt="Buy Now" height="80" width="200">
+                    </a>
                 </div>
             </div>
         </div>

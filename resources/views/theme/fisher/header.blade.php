@@ -15,14 +15,14 @@
                     <h2 style="color: #{{ $book->theme->font_color }}; font-weight: bold">{{ ucwords($book->title) }}</h2>
                     <h2 style="color: #{{ $book->theme->font_color }};">{{ ucwords($book->sub_title) }}</h2>
                     <p style="color: #{{ $book->theme->font_color }};">{{ $book->description }}</p>
-                    <p style="color: #{{ $book->theme->font_color }};">R{{ $book->price }} only</p>
+                    <p
+                        style="color: #{{ $book->theme->font_color }};font-weight: bold; padding-left: 15px; font-size: 20px;padding-bottom: 0px; margin-bottom: 0px;">
+                        R{{ $book->price }} only
+                    </p>
                     <div class="download-btn">
-                        <button
-                            class="btn btn-lg"
-                            style="background-color: #{{ $book->theme->secondary_color }};"
-                        >
-                            Buy Now
-                        </button>
+                        <a href="{{ route('checkout', ['slug' => $slug]) }}">
+                            <img src="/images/buy-now-yellow.png" alt="Buy Now" height="80" width="200">
+                        </a>
                     </div>
                 </div>
             </div>

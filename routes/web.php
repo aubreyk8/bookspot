@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PublicController@index')->name('home');
 Route::get('/publication/{slug}', 'PublicController@publication')->name('publication');
+Route::get('/checkout/{slug}', 'PublicController@checkout')->name('checkout');

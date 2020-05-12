@@ -45,6 +45,11 @@ class PublicController extends Controller
     public function publication(string $slug): View
     {
         $book = $this->publicationManager->fromSlug($slug);
-        return view('theme.fisher.index', compact('book'));
+        return view('theme.fisher.index', compact('book', 'slug'));
+    }
+
+    public function checkout(string $slug)
+    {
+
     }
 }
