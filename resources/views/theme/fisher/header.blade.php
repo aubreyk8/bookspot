@@ -15,6 +15,7 @@
                     <h2 style="color: #{{ $book->theme->font_color }}; font-weight: bold">{{ ucwords($book->title) }}</h2>
                     <h2 style="color: #{{ $book->theme->font_color }};">{{ ucwords($book->sub_title) }}</h2>
                     <p style="color: #{{ $book->theme->font_color }};">{{ $book->description }}</p>
+                    <p style="color: #{{ $book->theme->font_color }};">R{{ $book->price }} only</p>
                     <div class="download-btn">
                         <button
                             class="btn btn-lg"
