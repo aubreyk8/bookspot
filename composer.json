@@ -14,7 +14,6 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravelcollective/html": "^6.1",
         "orchid/platform": "^7.1",
         "paypal/rest-api-sdk-php": "^1.14",
         "phpro/grumphp": "^0.18.0",
