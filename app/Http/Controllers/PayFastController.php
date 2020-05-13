@@ -32,8 +32,10 @@ class PayFastController extends Controller
 
         $book = $order->book;
 
-        if (is_null($order->sale)) {
-            $saleRepository->persist([
+        $sale = $order->sale;
+
+        if (is_null($sale)) {
+            $sale = $saleRepository->persist([
                 'book_id' => $book->id,
                 'user_id' => $book->author->id,
                 'order_id' => $order->id,
@@ -42,7 +44,7 @@ class PayFastController extends Controller
             ]);
         }
 
-        return view('theme.fisher.thank-you', compact('book'));
+        return view('theme.fisher.thank-you', compact('book', 'sale', 'order'));
     }
 
     /**
