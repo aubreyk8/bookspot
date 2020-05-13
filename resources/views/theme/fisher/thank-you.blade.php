@@ -35,7 +35,7 @@
 </head>
 <body>
 
-@include('theme.fisher.partials.header')
+@include('theme.fisher.partials.slim-header')
 
 @include('theme.fisher.partials.complete')
 
