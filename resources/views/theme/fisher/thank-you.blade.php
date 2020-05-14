@@ -35,15 +35,9 @@
 </head>
 <body>
 
-@include('theme.fisher.partials.header')
+@include('theme.fisher.partials.slim-header')
 
-@include('theme.fisher.partials.topics')
-
-@include('theme.fisher.partials.offer')
-
-@include('theme.fisher.partials.testimonial')
-
-@include('theme.fisher.partials.reviewers')
+@include('theme.fisher.partials.complete')
 
 @include('theme.fisher.partials.footer')
 

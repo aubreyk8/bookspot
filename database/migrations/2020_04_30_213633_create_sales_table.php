@@ -17,9 +17,10 @@ class CreateSalesTable extends Migration
             $table->id();
             $table->bigInteger('book_id', false, true);
             $table->bigInteger('user_id', false, true);
+            $table->bigInteger('order_id', false, true);
             $table->double('price');
-            $table->string('link');
-            $table->integer('downloads');
+            $table->string('link')->nullable();
+            $table->integer('downloads')->nullable();
             $table->timestamp('expires_on');
             $table->softDeletes();
             $table->timestamps();

@@ -35,15 +35,25 @@
 </head>
 <body>
 
-@include('theme.fisher.partials.header')
+@include('theme.fisher.partials.slim-header')
 
-@include('theme.fisher.partials.topics')
-
-@include('theme.fisher.partials.offer')
-
-@include('theme.fisher.partials.testimonial')
-
-@include('theme.fisher.partials.reviewers')
+<section id="feature">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="title wow pulse" data-wow-delay=".5s">
+                    <h3>Download link has been emailed to you.</h3>
+                    <div style="width: 100%; margin-top: 50px;" class="text-center">
+                        <a href="{{ $downloadLink }}" class="btn btn-primary text-center" style="display: block; width: 200px; margin: auto;">
+                            <span class="fa fa-download"></span>
+                            Download Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @include('theme.fisher.partials.footer')
 

@@ -2,36 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Orchid\Screen\AsSource;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * Class Sale
+ * Class Order
  * @package App\Models
  */
-class Sale extends Model
+class Order extends Model
 {
-    use AsSource;
-
     /**
      * @var array
      */
     protected $fillable = [
         'book_id',
-        'user_id',
-        'price',
-        'order_id',
-        'link',
-        'downloads',
-        'expires_on'
+        'email',
+        'cancelled',
+        'successful',
+        'abandoned'
     ];
 
     /**
      * @var array
      */
     protected $dates = [
-        'expires_on',
+        'deleted_at'
     ];
 
     /**
@@ -43,10 +39,10 @@ class Sale extends Model
     }
 
     /**
-     * @return BelongsTo
+     * @return HasOne
      */
-    public function order(): BelongsTo
+    public function sale(): HasOne
     {
-        return $this->belongsTo(Order::class);
+        return $this->hasOne(Sale::class);
     }
 }

@@ -15,6 +15,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "orchid/platform": "^7.1",
+        "paypal/rest-api-sdk-php": "^1.14",
         "phpro/grumphp": "^0.18.0",
         "squizlabs/php_codesniffer": "^3.5"
     },

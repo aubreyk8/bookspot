@@ -15,18 +15,15 @@ interface Repository
     /**
      * @param string|null $needle
      * @param string $column
-     * @param array $options
      * @return LengthAwarePaginator
      */
-    public function list(string $needle = null, string $column = 'id', array $options = []): LengthAwarePaginator;
+    public function list(string $needle = null, string $column = 'id'): LengthAwarePaginator;
 
     /**
-     * @param string $needle
-     * @param string $column
-     * @param array $options
+     * @param string $id
      * @return Model
      */
-    public function find(string $needle, string $column = 'id', array $options = []): Model;
+    public function find(string $id): Model;
 
     /**
      * @param array $inputs

@@ -17,6 +17,7 @@ $factory->define(Sale::class, function (Faker $faker) {
     return [
         'book_id' => $faker->numberBetween(1, 5),
         'user_id' => $faker->numberBetween(2, 3),
+        'order_id' => $faker->numberBetween(2, 3),
         'price' => $prices[$faker->numberBetween(0, 3)],
         'link' => $faker->url,
         'downloads' => $faker->numberBetween(1, 10),
