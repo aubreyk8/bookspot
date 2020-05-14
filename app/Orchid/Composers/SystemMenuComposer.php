@@ -33,7 +33,7 @@ class SystemMenuComposer
         $this->dashboard->menu
             ->add(
                 Menu::SYSTEMS,
-                ItemMenu::label(__('Access rights'))
+                ItemMenu::label(__('User Management'))
                     ->icon('icon-lock')
                     ->slug('Auth')
                     ->active('platform.systems.*')

@@ -25,13 +25,9 @@ class UserListLayout extends Table
     public function columns(): array
     {
         return [
-            TD::set('name', __('Name'))
-                ->sort()
+            TD::set('name', __('Names'))
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
                 ->render(function (User $user) {
-                    // Please use Blade templates.
-                    // This will be a simple example: view('path', ['user' => $user])
                     $avatar = e($user->presenter()->image());
                     $name = e($user->presenter()->title());
                     $sub = e($user->presenter()->subTitle());
@@ -68,12 +64,12 @@ class UserListLayout extends Table
                     return $user->updated_at->toDateTimeString();
                 }),
 
-            TD::set('id', 'ID')
+            TD::set('id', 'Action')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
                 ->render(function (User $user) {
                     return DropDown::make()
-                        ->icon('icon-options-vertical')
+                        ->icon('icon-menu')
                         ->list([
 
                             Link::make(__('Edit'))

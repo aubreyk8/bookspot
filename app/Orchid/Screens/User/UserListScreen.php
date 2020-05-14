@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use App\Orchid\Layouts\User\UserEditLayout;
-use App\Orchid\Layouts\User\UserFiltersLayout;
-use App\Orchid\Layouts\User\UserListLayout;
+use Orchid\Screen\Screen;
+use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
-use Orchid\Screen\Layout;
-use Orchid\Screen\Screen;
 use Orchid\Support\Facades\Toast;
+use App\Orchid\Type\EditModalToggleType;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\User\UserListLayout;
+use App\Orchid\Layouts\User\UserFiltersLayout;
 
 class UserListScreen extends Screen
 {
@@ -57,7 +58,11 @@ class UserListScreen extends Screen
      */
     public function commandBar(): array
     {
-        return [];
+        return [
+            EditModalToggleType::make('Add User')
+                ->class('btn btn-primary')
+                ->icon('icon-plus'),
+        ];
     }
 
     /**
