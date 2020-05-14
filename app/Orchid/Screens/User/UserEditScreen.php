@@ -4,20 +4,20 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
-use App\Orchid\Layouts\Role\RolePermissionLayout;
-use App\Orchid\Layouts\User\UserEditLayout;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Orchid\Access\UserSwitch;
-use Orchid\Platform\Models\User;
-use Orchid\Screen\Action;
-use Orchid\Screen\Actions\Button;
-use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\ModalToggle;
-use Orchid\Screen\Fields\Password;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
+use Orchid\Screen\Action;
+use Illuminate\Http\Request;
+use Orchid\Access\UserSwitch;
+use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Toast;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Password;
+use Orchid\Screen\Actions\DropDown;
+use Illuminate\Support\Facades\Hash;
+use Orchid\Screen\Actions\ModalToggle;
+use App\Orchid\Layouts\User\UserEditLayout;
+use App\Orchid\Layouts\Role\RolePermissionLayout;
 
 class UserEditScreen extends Screen
 {
@@ -79,16 +79,18 @@ class UserEditScreen extends Screen
                         ->modal('password')
                         ->title(__('Change Password')),
 
-                ]),
+                ])->class('btn btn-primary'),
 
             Button::make(__('Save'))
                 ->icon('icon-check')
-                ->method('save'),
+                ->method('save')->class('btn btn-success'),
 
             Button::make(__('Remove'))
                 ->icon('icon-trash')
                 ->confirm('Are you sure you want to delete the user?')
-                ->method('remove'),
+                ->method('remove')
+                ->class('btn btn-danger')
+                ->icon('icon-close'),
         ];
     }
 
