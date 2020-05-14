@@ -9,6 +9,10 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Layouts\Rows;
 
+/**
+ * Class UserEditLayout
+ * @package App\Orchid\Layouts\User
+ */
 class UserEditLayout extends Rows
 {
     /**
@@ -21,6 +25,8 @@ class UserEditLayout extends Rows
     public function fields(): array
     {
         return [
+            Input::make('user.id')
+                ->type('hidden'),
             Input::make('user.first_name')
                 ->type('text')
                 ->max(255)

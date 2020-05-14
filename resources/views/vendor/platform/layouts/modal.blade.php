@@ -38,7 +38,7 @@
                     </div>
                     <div class="modal-footer">
 
-                        <button type="button" class="btn btn-link" data-dismiss="modal">
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">
                             {{ $close }}
                         </button>
 
@@ -46,7 +46,7 @@
                             <button type="submit"
                                     id="submit-modal-{{$key}}"
                                     data-turbolinks="{{ var_export($turbolinks) }}"
-                                    class="btn btn-default">
+                                    class="btn btn-primary">
                                 {{ $apply }}
                             </button>
                         @else

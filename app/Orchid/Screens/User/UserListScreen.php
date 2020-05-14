@@ -9,6 +9,8 @@ use Orchid\Screen\Layout;
 use Illuminate\Http\Request;
 use Orchid\Platform\Models\User;
 use Orchid\Support\Facades\Toast;
+use Illuminate\Http\RedirectResponse;
+use App\Services\Users\UserManagement;
 use App\Orchid\Type\EditModalToggleType;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserListLayout;
@@ -61,7 +63,10 @@ class UserListScreen extends Screen
         return [
             EditModalToggleType::make('Add User')
                 ->class('btn btn-primary')
-                ->icon('icon-plus'),
+                ->icon('icon-plus')
+                ->modal('oneAsyncModal')
+                ->modalTitle('Add User')
+                ->method('saveUser'),
         ];
     }
 
@@ -78,7 +83,8 @@ class UserListScreen extends Screen
 
             Layout::modal('oneAsyncModal', [
                 UserEditLayout::class,
-            ])->async('asyncGetUser'),
+            ])->async('asyncGetUser')
+                ->applyButton('Save'),
         ];
     }
 
@@ -95,16 +101,15 @@ class UserListScreen extends Screen
     }
 
     /**
-     * @param User    $user
      * @param Request $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @param UserManagement $userManagement
+     * @return RedirectResponse
      */
-    public function saveUser(User $user, Request $request)
+    public function saveUser(Request $request, UserManagement $userManagement)
     {
-        $user->fill($request->get('user'))
-            ->replaceRoles($request->input('user.roles'))
-            ->save();
+        $user =  $userManagement->createUser($request->get('user'));
+        $userManagement->replaceRoles($user, $request->input('user.roles'));
 
         Toast::info(__('User was saved.'));
 
@@ -114,7 +119,7 @@ class UserListScreen extends Screen
     /**
      * @param Request $request
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function remove(Request $request)
     {
