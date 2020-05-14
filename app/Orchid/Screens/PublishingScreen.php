@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 use App\Services\BookLocator;
 use Orchid\Support\Facades\Toast;
 use Orchid\Screen\Actions\Button;
-use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
+use App\Services\Publishing\PublishingManager;
 use App\Orchid\Layouts\Publishing\PublicationLayout;
 
 /**
