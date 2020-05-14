@@ -49,14 +49,7 @@ class UserListLayout extends Table
             TD::set('email', __('Email'))
                 ->sort()
                 ->cantHide()
-                ->filter(TD::FILTER_TEXT)
-                ->render(function (User $user) {
-                    return ModalToggle::make($user->email)
-                        ->modal('oneAsyncModal')
-                        ->modalTitle($user->presenter()->title())
-                        ->method('saveUser')
-                        ->asyncParameters($user->id);
-                }),
+                ->filter(TD::FILTER_TEXT),
 
             TD::set('updated_at', __('Last edit'))
                 ->sort()
@@ -78,10 +71,6 @@ class UserListLayout extends Table
                                 ->modalTitle($user->presenter()->title())
                                 ->method('saveUser')
                                 ->asyncParameters($user->id),
-
-                            Link::make(__('Edit Permissions'))
-                                ->route('platform.systems.users.edit', $user->id)
-                                ->icon('icon-pencil'),
 
                             Button::make(__('Delete'))
                                 ->method('remove')
