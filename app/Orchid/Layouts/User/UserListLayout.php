@@ -72,7 +72,14 @@ class UserListLayout extends Table
                         ->icon('icon-menu')
                         ->list([
 
-                            Link::make(__('Edit'))
+                            ModalToggle::make('Edit User')
+                                ->icon('icon-pencil')
+                                ->modal('oneAsyncModal')
+                                ->modalTitle($user->presenter()->title())
+                                ->method('saveUser')
+                                ->asyncParameters($user->id),
+
+                            Link::make(__('Edit Permissions'))
                                 ->route('platform.systems.users.edit', $user->id)
                                 ->icon('icon-pencil'),
 

@@ -108,8 +108,7 @@ class UserListScreen extends Screen
      */
     public function saveUser(Request $request, UserManagement $userManagement)
     {
-        $user =  $userManagement->createUser($request->get('user'));
-        $userManagement->replaceRoles($user, $request->input('user.roles'));
+        $userManagement->createUser($request->get('user'));
 
         Toast::info(__('User was saved.'));
 
