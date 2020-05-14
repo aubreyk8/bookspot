@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         if (app()->environment('local')) {
-            $this->call(UserTableSeeder::class);
             $this->call(PublishingTableSeeder::class);
             $this->call(ReviewTableSeeder::class);
             $this->call(SalesTableSeeder::class);
@@ -23,6 +22,7 @@ class DatabaseSeeder extends Seeder
             $this->call(TopicTableSeeder::class);
         }
 
+        $this->call(UserTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(UserRoleTableSeedder::class);
         $this->call(CategoryTableSeeder::class);
