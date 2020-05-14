@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
-use App\Services\PublishingManager;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
+use App\Services\Publishing\PublishingManager;
 use App\Exceptions\PublicationNotFoundException;
 
 /**
