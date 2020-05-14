@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Publishing;
 
 use App\Models\Book;
 use App\Helpers\SlugHelper;
