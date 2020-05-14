@@ -25,4 +25,15 @@ class OrderRepository extends BaseRepository
             'book_id' => $id,
         ]);
     }
+
+    /**
+     * @param string $email
+     * @param int $id
+     */
+    public function saveEmailAddress(string $email, int $id): void
+    {
+        $order = $this->find($id);
+        $order->email = $email;
+        $order->save();
+    }
 }
