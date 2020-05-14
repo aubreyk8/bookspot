@@ -83,7 +83,8 @@ class UserEditScreen extends Screen
 
             Button::make(__('Save'))
                 ->icon('icon-check')
-                ->method('save')->class('btn btn-success'),
+                ->method('save')
+                ->class('btn btn-success'),
 
             Button::make(__('Remove'))
                 ->icon('icon-trash')

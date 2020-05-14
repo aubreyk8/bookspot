@@ -143,7 +143,7 @@ class PublicationScreen extends Screen
     ): RedirectResponse {
        $book = $publicationRepository->persist($request->toArray()['book']);
 
-        return redirect()->route('platform.publication', ['id' => $book->id]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($book->id)]);
     }
 
     /**
@@ -161,7 +161,7 @@ class PublicationScreen extends Screen
 
         Alert::success('Chapter has been saved');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
     /**
@@ -177,7 +177,7 @@ class PublicationScreen extends Screen
 
         Alert::warning('Chapter has been removed');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
     /**
@@ -193,7 +193,7 @@ class PublicationScreen extends Screen
 
         Alert::success('Reviewer has been saved');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
     /**
@@ -209,7 +209,7 @@ class PublicationScreen extends Screen
 
         Alert::warning('Review has been deleted');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
     /**
@@ -227,7 +227,7 @@ class PublicationScreen extends Screen
 
         Alert::success('Testimonial has been added');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
     /**
@@ -243,6 +243,6 @@ class PublicationScreen extends Screen
 
         Alert::warning('Testimonial has been removed');
 
-        return redirect()->route('platform.publication', ['id' => $inputs['book_id']]);
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 }
