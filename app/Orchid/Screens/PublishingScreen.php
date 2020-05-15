@@ -33,6 +33,13 @@ class PublishingScreen extends Screen
     public $description = 'BookSpot Publishing';
 
     /**
+     * @var string[]
+     */
+    public $permission = [
+        'publication-view'
+    ];
+
+    /**
      * Query data.
      *
      * @param PublishingManager $manager

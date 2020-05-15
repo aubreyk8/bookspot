@@ -3,7 +3,7 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
-use App\Services\SalesManager;
+use App\Repositories\SaleRepository;
 use App\Orchid\Layouts\Sales\SalesListLayout;
 
 /**
@@ -27,15 +27,22 @@ class SalesScreen extends Screen
     public $description = 'BookSpot Sales';
 
     /**
+     * @var string[]
+     */
+    public $permission = [
+        'sale-view'
+    ];
+
+    /**
      * Query data.
      *
-     * @param SalesManager $manager
+     * @param SaleRepository $saleRepository
      * @return array
      */
-    public function query(SalesManager $manager): array
+    public function query(SaleRepository $saleRepository): array
     {
         return [
-            'sales' => $manager->getSales(),
+            'sales' => $saleRepository->list(),
         ];
     }
 
