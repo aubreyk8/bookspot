@@ -43,6 +43,7 @@ class ThemeFormLayout extends Rows
             Button::make('Save')
                 ->class('btn btn-primary')
                 ->icon('icon-save')
+                ->method('saveThemeSettings')
         ];
     }
 }

@@ -69,6 +69,7 @@ class PublicationScreen extends Screen
             'topics' => $this->bookLocator->getBookTopics(),
             'reviewers' => $this->bookLocator->getBookReviewers(),
             'testimonials' => $this->bookLocator->getBookTestimonials(),
+            'theme' => $this->bookLocator->getBookTheme(),
         ];
     }
 
@@ -94,6 +95,9 @@ class PublicationScreen extends Screen
         ];
     }
 
+    /**
+     * @return array
+     */
     private function buildTabbedView(): array
     {
         $tabbedView = [];
@@ -247,5 +251,10 @@ class PublicationScreen extends Screen
         Alert::warning('Testimonial has been removed');
 
         return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
+    }
+
+    public function saveThemeSettings(): RedirectResponse
+    {
+
     }
 }
