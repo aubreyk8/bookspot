@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens;
 
+use App\Http\Requests\ThemeRequest;
+use App\Repositories\ThemeRepository;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -15,6 +17,7 @@ use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Repositories\PublicationRepository;
 use App\Repositories\TestimonialRepository;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
+use App\Orchid\Layouts\Theme\ThemeFormLayout;
 use App\Http\Requests\PublicationReviewRequest;
 use App\Http\Requests\PublicationTopicsRequest;
 use App\Http\Requests\PublicationTestimonialRequest;
@@ -68,6 +71,7 @@ class PublicationScreen extends Screen
             'topics' => $this->bookLocator->getBookTopics(),
             'reviewers' => $this->bookLocator->getBookReviewers(),
             'testimonials' => $this->bookLocator->getBookTestimonials(),
+            'theme' => $this->bookLocator->getBookTheme(),
         ];
     }
 
@@ -93,6 +97,9 @@ class PublicationScreen extends Screen
         ];
     }
 
+    /**
+     * @return array
+     */
     private function buildTabbedView(): array
     {
         $tabbedView = [];
@@ -127,6 +134,8 @@ class PublicationScreen extends Screen
                     TestimonialLayout::class,
                 ]
             );
+
+            $tabbedView['Theme Settings'] = ThemeFormLayout::class;
         }
 
         return $tabbedView;
@@ -242,6 +251,22 @@ class PublicationScreen extends Screen
         $repository->remove($inputs['id']);
 
         Alert::warning('Testimonial has been removed');
+
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
+    }
+
+    /**
+     * @param ThemeRequest $request
+     * @param ThemeRepository $themeRepository
+     * @return RedirectResponse
+     */
+    public function saveThemeSettings(ThemeRequest $request, ThemeRepository $themeRepository): RedirectResponse
+    {
+        $inputs = $request->toArray()['theme'];
+
+        $themeRepository->persist($inputs);
+
+        Alert::success('Theme has been updated');
 
         return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }

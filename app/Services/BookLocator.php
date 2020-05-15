@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Theme;
 use App\Models\Book;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -64,6 +65,14 @@ class BookLocator
     public function getBookTestimonials(): Collection
     {
         return  $this->hasBook() ? $this->getBook()->testimonials : new Collection();
+    }
+
+    /**
+     * @return Theme|null
+     */
+    public function getBookTheme(): ?Theme
+    {
+        return $this->hasBook() ? $this->getBook()->theme : null;
     }
 
     public function clear(): void

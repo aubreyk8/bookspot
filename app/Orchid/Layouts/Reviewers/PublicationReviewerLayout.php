@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Layouts\Reviewers;
 
-use App\Reviewer;
 use Orchid\Screen\TD;
+use App\Models\Reviewer;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\Button;
 use App\Orchid\Type\IndicatorType;
