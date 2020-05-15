@@ -30,6 +30,13 @@ class DashboardScreen extends Screen
     public $description = 'BookSpot Dashboard';
 
     /**
+     * @var array
+     */
+    public $permission = [
+        'dashboard-view'
+    ];
+
+    /**
      * Query data.
      *
      * @param DashboardManager $manager
