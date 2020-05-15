@@ -49,22 +49,26 @@ return [
         ],
 
         'public' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => 'BookSpot/' . ENV('APP_ENV') . '/images/',
+            'driver' => 's3',
+            'key' => env('DO_ACCESS_KEY_ID'),
+            'secret' => env('DO_SECRET_ACCESS_KEY'),
+            'region' => env('DO_DEFAULT_REGION'),
+            'bucket' => env('DO_BUCKET'),
+            'endpoint' => env('DO_URL'),
             'visibility' => 'public',
         ],
 
-        's3' => [
+        'publication_spaces' => [
+            'root' => 'BookSpot/' . ENV('APP_ENV') . '/publication/',
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
+            'key' => env('DO_ACCESS_KEY_ID'),
+            'secret' => env('DO_SECRET_ACCESS_KEY'),
+            'region' => env('DO_DEFAULT_REGION'),
+            'bucket' => env('DO_BUCKET'),
+            'endpoint' => env('DO_URL'),
+            'visibility' => 'private',
         ],
-
     ],
 
     /*
