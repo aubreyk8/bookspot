@@ -56,7 +56,6 @@ return [
             'region' => env('DO_DEFAULT_REGION'),
             'bucket' => env('DO_BUCKET'),
             'endpoint' => env('DO_URL'),
-            'url' => ENV('DO_PUBLIC_URL') . 'BookSpot/' . strtoupper(ENV('APP_ENV')) . '/IMAGES',
             'visibility' => 'public',
         ],
 
