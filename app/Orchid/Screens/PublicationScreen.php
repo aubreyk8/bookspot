@@ -2,6 +2,8 @@
 
 namespace App\Orchid\Screens;
 
+use App\Http\Requests\ThemeRequest;
+use App\Repositories\ThemeRepository;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
@@ -253,8 +255,19 @@ class PublicationScreen extends Screen
         return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 
-    public function saveThemeSettings(): RedirectResponse
+    /**
+     * @param ThemeRequest $request
+     * @param ThemeRepository $themeRepository
+     * @return RedirectResponse
+     */
+    public function saveThemeSettings(ThemeRequest $request, ThemeRepository $themeRepository): RedirectResponse
     {
+        $inputs = $request->toArray()['theme'];
 
+        $themeRepository->persist($inputs);
+
+        Alert::success('Theme has been updated');
+
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
     }
 }
