@@ -87,6 +87,7 @@ class PublicationFormLayout extends Rows
                 ->groups('publications')
                 ->maxFiles(1)
                 ->horizontal()
+                ->storage('publication_spaces')
                 ->title('eBook (PDF)'),
             Button::make('Save')
                 ->class('btn btn-primary')
