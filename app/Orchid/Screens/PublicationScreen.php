@@ -15,6 +15,7 @@ use App\Orchid\Layouts\Topic\TopicLayout;
 use App\Repositories\PublicationRepository;
 use App\Repositories\TestimonialRepository;
 use App\Orchid\Layouts\Topic\TopicFormLayout;
+use App\Orchid\Layouts\Theme\ThemeFormLayout;
 use App\Http\Requests\PublicationReviewRequest;
 use App\Http\Requests\PublicationTopicsRequest;
 use App\Http\Requests\PublicationTestimonialRequest;
@@ -127,6 +128,8 @@ class PublicationScreen extends Screen
                     TestimonialLayout::class,
                 ]
             );
+
+            $tabbedView['Theme Settings'] = ThemeFormLayout::class;
         }
 
         return $tabbedView;
