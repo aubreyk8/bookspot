@@ -49,7 +49,7 @@ return [
         ],
 
         'public' => [
-            'root' => 'BookSpot/' . strtoupper(ENV('APP_ENV')) . '/IMAGES/',
+            'root' => 'BookSpot/' . ENV('APP_ENV') . '/images/',
             'driver' => 's3',
             'key' => env('DO_ACCESS_KEY_ID'),
             'secret' => env('DO_SECRET_ACCESS_KEY'),
@@ -60,7 +60,7 @@ return [
         ],
 
         'publication_spaces' => [
-            'root' => 'BookSpot/' . strtoupper(ENV('APP_ENV')) . '/PUBLICATIONS/',
+            'root' => 'BookSpot/' . ENV('APP_ENV') . '/publication/',
             'driver' => 's3',
             'key' => env('DO_ACCESS_KEY_ID'),
             'secret' => env('DO_SECRET_ACCESS_KEY'),
