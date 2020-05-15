@@ -3,7 +3,7 @@
 namespace App\Orchid\Screens;
 
 use Orchid\Screen\Screen;
-use App\Services\ReviewManager;
+use App\Repositories\ReviewRepository;
 use App\Orchid\Layouts\Reviews\ReviewsListLayout;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
@@ -28,16 +28,23 @@ class ReviewsScreen extends Screen
     public $description = 'BookSpot Reviews';
 
     /**
+     * @var string[]
+     */
+    public $permission = [
+        'review-view'
+    ];
+
+    /**
      * Query data.
      *
-     * @param ReviewManager $manager
+     * @param ReviewRepository $reviewRepository
      * @return array
      * @throws BindingResolutionException
      */
-    public function query(ReviewManager $manager): array
+    public function query(ReviewRepository $reviewRepository): array
     {
         return [
-            'reviews' => $manager->getReviews()
+            'reviews' => $reviewRepository->list()
         ];
     }
 

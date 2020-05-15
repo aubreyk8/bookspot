@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Repositories;
 
 use App\Models\Reviews;
+use App\Models\Reviewer;
 use App\Constants\DashboardView;
 use App\Helpers\CollectionHelper;
 use Illuminate\Support\Facades\Auth;
@@ -10,16 +11,23 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Contracts\Container\BindingResolutionException;
 
 /**
- * Class ReviewManager
- * @package App\Services
+ * Class ReviewRepository
+ * @package App\Repositories
  */
-class ReviewManager
+class ReviewRepository extends BaseRepository
 {
     /**
+     * @var string
+     */
+    protected string $prototype = Reviewer::class;
+
+    /**
+     * @param string|null $needle
+     * @param string $column
      * @return LengthAwarePaginator
      * @throws BindingResolutionException
      */
-    public function getReviews(): LengthAwarePaginator
+    public function list(string $needle = null, string $column = 'id'): LengthAwarePaginator
     {
         if (Auth::user()->inRole('administrator')) {
             return Reviews::paginate(DashboardView::PAGINATION_LENGTH);
