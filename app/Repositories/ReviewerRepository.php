@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Reviewer;
+use App\Models\Reviewer;
 
 class ReviewerRepository extends BaseRepository
 {

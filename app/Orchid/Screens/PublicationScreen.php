@@ -152,6 +152,8 @@ class PublicationScreen extends Screen
     ): RedirectResponse {
        $book = $publicationRepository->persist($request->toArray()['book']);
 
+       Alert::success('Publication has been saved');
+
         return redirect()->route('platform.publication', ['sequence_no' => base64_encode($book->id)]);
     }
 

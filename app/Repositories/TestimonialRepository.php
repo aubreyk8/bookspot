@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Testimonial;
+use App\Models\Testimonial;
 
 /**
  * Class TestimonialRepository

@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Models\Book;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -23,7 +22,9 @@ class Theme extends Model
       'secondary_color',
       'icon_color',
       'cover_image_height',
+      'cover_image_width',
       'secondary_image_height',
+      'secondary_image_width'
     ];
 
     /**
