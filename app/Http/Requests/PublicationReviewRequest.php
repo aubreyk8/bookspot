@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\HasFunctionalAuth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PublicationReviewRequest extends FormRequest
 {
+    use HasFunctionalAuth;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +16,7 @@ class PublicationReviewRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->hasPermission('publication-edit');
     }
 
     /**
@@ -29,8 +32,8 @@ class PublicationReviewRequest extends FormRequest
             'reviewer.job_title' => 'required',
             'reviewer.facebook' => 'string|nullable',
             'reviewer.twitter' => 'string|nullable',
-            'reviewer.message' => 'required',
-            'reviewer.book_id' => 'required'
+            'reviewer.message' => 'required|string|max:900',
+            'reviewer.book_id' => 'required|numeric'
         ];
     }
 }

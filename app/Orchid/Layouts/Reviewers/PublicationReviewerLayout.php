@@ -5,12 +5,14 @@ namespace App\Orchid\Layouts\Reviewers;
 use Orchid\Screen\TD;
 use App\Models\Reviewer;
 use Orchid\Screen\Layouts\Table;
+use App\Traits\HasFunctionalAuth;
 use Orchid\Screen\Actions\Button;
 use App\Orchid\Type\IndicatorType;
 use Orchid\Screen\Actions\DropDown;
 
 class PublicationReviewerLayout extends Table
 {
+    use HasFunctionalAuth;
 
     /**
      * @var string
@@ -39,16 +41,28 @@ class PublicationReviewerLayout extends Table
             })->width(180),
             TD::set('action', 'Action')->render(function (Reviewer $reviewer) {
                 return DropDown::make()->icon('icon-menu')->list([
-                    Button::make('Delete')->icon('icon-close')->parameters([
+                    Button::make('Edit')
+                        ->icon('icon-pencil')
+                        ->method('getReviewer')
+                        ->parameters([
+                            'review_id' => $reviewer->id,
+                        ])->canSee($this->hasPermission('publication-edit')),
+                    Button::make('Remove')->icon('icon-close')->parameters([
                         'action' => [
                             'id' => $reviewer->id,
                             'book_id' => $reviewer->book_id
                         ]
-                    ])->method('removeReview'),
+                    ])->method('removeReview')
+                        ->confirm('Are you sure you want to remove Review?')
+                        ->canSee($this->hasPermission('publication-remove')),
                 ]);
             })
                 ->width(30)
                 ->align(TD::ALIGN_CENTER)
+                ->canSee($this->hasEitherPermission([
+                    'publication-remove',
+                    'publication-edit'
+                ]))
         ];
     }
 }

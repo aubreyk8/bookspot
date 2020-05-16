@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
-use App\Models\Theme;
 use App\Models\Book;
+use App\Models\Theme;
 use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
 /**
@@ -13,8 +14,14 @@ use Illuminate\Support\Facades\Session;
  */
 class BookLocator
 {
+    /**
+     * @var false|string
+     */
     private $book_id;
 
+    /**
+     * BookLocator constructor.
+     */
     public function __construct()
     {
         if (isset($_GET['sequence_no'])) {
@@ -30,6 +37,9 @@ class BookLocator
         return isset($this->book_id);
     }
 
+    /**
+     * @return int|null
+     */
     public function getBookId(): ?int
     {
         return $this->book_id;
@@ -73,6 +83,15 @@ class BookLocator
     public function getBookTheme(): ?Theme
     {
         return $this->hasBook() ? $this->getBook()->theme : null;
+    }
+
+    /**
+     * @param string $key
+     * @return Model|null
+     */
+    public function getFlashModel(string $key): ?Model
+    {
+        return Session::pull($key);
     }
 
     public function clear(): void

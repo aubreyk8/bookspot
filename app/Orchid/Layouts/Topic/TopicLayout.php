@@ -5,6 +5,7 @@ namespace App\Orchid\Layouts\Topic;
 use App\Models\Topic;
 use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
+use App\Traits\HasFunctionalAuth;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 
@@ -14,6 +15,8 @@ use Orchid\Screen\Actions\DropDown;
  */
 class TopicLayout extends Table
 {
+    use HasFunctionalAuth;
+
     public $target = 'topics';
 
     /**
@@ -30,6 +33,12 @@ class TopicLayout extends Table
                 return DropDown::make()
                     ->icon('icon-menu')
                     ->list([
+                        Button::make('Edit')
+                            ->icon('icon-pencil')
+                            ->method('getTopic')
+                            ->parameters([
+                                'topic_id' => $topic->id,
+                            ])->canSee($this->hasPermission('publication-edit')),
                         Button::make('Remove')
                             ->icon('icon-close')
                             ->method('removeTopic')->parameters([
@@ -37,9 +46,12 @@ class TopicLayout extends Table
                                     'id' => $topic->id,
                                     'book_id' => $topic->book_id
                                 ]
-                            ])
+                            ])->canSee($this->hasPermission('publication-remove'))
                     ]);
-            })
+            })->canSee($this->hasEitherPermission([
+                'publication-remove',
+                'publication-edit'
+            ]))
         ];
     }
 }

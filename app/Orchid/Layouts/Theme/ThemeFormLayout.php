@@ -38,10 +38,20 @@ class ThemeFormLayout extends Rows
                 ->title('Cover Image Height')
                 ->placeholder('Cover Image Height')
                 ->horizontal(),
+            Input::make('theme.cover_image_width')
+                ->type('number')
+                ->title('Cover Image Width')
+                ->placeholder('Cover Image Width')
+                ->horizontal(),
             Input::make('theme.secondary_image_height')
                 ->type('number')
                 ->title('Secondary Image Height')
                 ->placeholder('Secondary Image Height')
+                ->horizontal(),
+            Input::make('theme.secondary_image_width')
+                ->type('number')
+                ->title('Secondary Image Width')
+                ->placeholder('Secondary Image Width')
                 ->horizontal(),
             Input::make('theme.font_color')
                 ->type('text')

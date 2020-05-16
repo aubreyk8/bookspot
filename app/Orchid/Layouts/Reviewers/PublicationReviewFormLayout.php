@@ -63,16 +63,19 @@ class PublicationReviewFormLayout extends Rows
                 ->title('Message')
                 ->placeholder('Message')
                 ->horizontal()
-                ->rows(8)
-                ->maxlength(255),
+                ->rows(15)
+                ->maxlength(900),
             Cropper::make('reviewer.image')
                 ->height(50)
                 ->title('Photo')
+                ->accept('image/*')
+                ->height('CROPPER_IMAGE_WIDTH', 900)
+                ->width('CROPPER_IMAGE_HEIGHT', 900)
                 ->horizontal(),
             Input::make('reviewer.book_id')
                 ->type('hidden')
                 ->value($this->book_id),
-            Button::make('submit')
+            Button::make('Save')
                 ->class('btn btn-primary pull-center')
                 ->icon('icon-save')
                 ->method('saveReviews'),
