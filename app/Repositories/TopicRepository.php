@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Topic;
+use App\Models\Topic;
 
 /**
  * Class TopicRepository

@@ -2,7 +2,7 @@
 
 namespace App\Orchid\Layouts\Topic;
 
-use App\Topic;
+use App\Models\Topic;
 use Orchid\Screen\TD;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\Button;

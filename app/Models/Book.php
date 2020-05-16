@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Topic;
-use App\Testimonial;
 use Orchid\Screen\AsSource;
 use Orchid\Attachment\Attachable;
 use Illuminate\Database\Eloquent\Model;

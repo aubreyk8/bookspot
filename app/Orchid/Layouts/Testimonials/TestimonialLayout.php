@@ -2,8 +2,8 @@
 
 namespace App\Orchid\Layouts\Testimonials;
 
-use App\Testimonial;
 use Orchid\Screen\TD;
+use App\Models\Testimonial;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -32,7 +32,6 @@ class TestimonialLayout extends Table
                 return DropDown::make()
                     ->icon('icon-menu')
                     ->list([
-                        Button::make('Edit'),
                         Button::make('Delete')
                             ->icon('icon-close')
                             ->method('removeTestimonial')
