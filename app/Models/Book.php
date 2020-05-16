@@ -94,6 +94,6 @@ class Book extends Model
      */
     public function order(): HasMany
     {
-        return $this->hasMany(Book::class);
+        return $this->hasMany(Book::class, 'id', 'book_id');
     }
 }
