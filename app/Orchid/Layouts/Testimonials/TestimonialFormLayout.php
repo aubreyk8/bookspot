@@ -51,7 +51,8 @@ class TestimonialFormLayout extends Rows
                 ->title('Message')
                 ->placeholder('Message')
                 ->horizontal()
-                ->rows(6),
+                ->rows(15)
+                ->maxlength(900),
             Input::make('testimonial.book_id')
                 ->type('hidden')
                 ->value($this->book_id),

@@ -5,6 +5,7 @@ namespace App\Orchid\Layouts\Testimonials;
 use Orchid\Screen\TD;
 use App\Models\Testimonial;
 use Orchid\Screen\Layouts\Table;
+use App\Traits\HasFunctionalAuth;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 
@@ -14,6 +15,8 @@ use Orchid\Screen\Actions\DropDown;
  */
 class TestimonialLayout extends Table
 {
+
+    use HasFunctionalAuth;
 
     public $target = 'testimonials';
 
@@ -36,7 +39,7 @@ class TestimonialLayout extends Table
                             ->method('getTestimonial')
                             ->parameters([
                                 'testimonial_id' => $testimonial->id,
-                            ])
+                            ])->canSee($this->hasPermission('publication-edit'))
                         ->icon('icon-pencil'),
                         Button::make('Remove')
                             ->icon('icon-close')
@@ -47,9 +50,12 @@ class TestimonialLayout extends Table
                                     'id' => $testimonial->id,
                                     'book_id' => $testimonial->book_id,
                                 ]
-                            ]),
+                            ])->canSee($this->hasPermission('publication-remove')),
                     ]);
-            })
+            })->canSee($this->hasEitherPermission([
+                'publication-remove',
+                'publication-edit'
+            ]))
         ];
     }
 }

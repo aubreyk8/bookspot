@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\HasFunctionalAuth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ThemeRequest extends FormRequest
 {
+    use HasFunctionalAuth;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +16,7 @@ class ThemeRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->hasPermission('publication-edit');
     }
 
     /**

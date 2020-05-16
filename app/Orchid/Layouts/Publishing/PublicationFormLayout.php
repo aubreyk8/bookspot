@@ -78,8 +78,8 @@ class PublicationFormLayout extends Rows
                 ->empty('No select', 0)
                 ->horizontal(),
             Cropper::make('book.cover_image')
-                ->width(ENV('CROPPER_IMAGE_WIDTH', 500))
-                ->height(ENV('CROPPER_IMAGE_HEIGHT', 300))
+                ->width(ENV('CROPPER_IMAGE_WIDTH', 900))
+                ->height(ENV('CROPPER_IMAGE_HEIGHT', 900))
                 ->accept('image/*')
                 ->horizontal()->title('Cover photo'),
             Upload::make('book.published_book')
