@@ -55,7 +55,7 @@ class TestimonialFormLayout extends Rows
             Input::make('testimonial.book_id')
                 ->type('hidden')
                 ->value($this->book_id),
-            Button::make('submit')
+            Button::make('Save')
                 ->class('btn btn-primary')
                 ->icon('icon-save')
                 ->method('saveTestimonial'),

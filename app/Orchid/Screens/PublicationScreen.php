@@ -2,15 +2,16 @@
 
 namespace App\Orchid\Screens;
 
-use App\Http\Requests\ThemeRequest;
-use App\Repositories\ThemeRepository;
 use Orchid\Screen\Layout;
 use Orchid\Screen\Screen;
 use Illuminate\Http\Request;
 use App\Services\BookLocator;
 use Orchid\Support\Facades\Alert;
+use App\Http\Requests\ThemeRequest;
 use App\Repositories\TopicRepository;
+use App\Repositories\ThemeRepository;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Session;
 use App\Repositories\ReviewerRepository;
 use App\Http\Requests\PublicationRequest;
 use App\Orchid\Layouts\Topic\TopicLayout;
@@ -69,8 +70,11 @@ class PublicationScreen extends Screen
         return [
             'book' => $this->bookLocator->getBook(),
             'topics' => $this->bookLocator->getBookTopics(),
+            'topic' => $this->bookLocator->getFlashModel('flash_topic'),
             'reviewers' => $this->bookLocator->getBookReviewers(),
+            'review' => $this->bookLocator->getFlashModel('flash_review'),
             'testimonials' => $this->bookLocator->getBookTestimonials(),
+            'testimonial' => $this->bookLocator->getFlashModel('flash_testimonial'),
             'theme' => $this->bookLocator->getBookTheme(),
         ];
     }
@@ -239,6 +243,20 @@ class PublicationScreen extends Screen
         Alert::success('Testimonial has been added');
 
         return redirect()->route('platform.publication', ['sequence_no' => base64_encode($inputs['book_id'])]);
+    }
+
+    /**
+     * @param Request $request
+     * @param TestimonialRepository $testimonialRepository
+     * @return RedirectResponse
+     */
+    public function getTestimonial(Request $request, TestimonialRepository $testimonialRepository)
+    {
+        $testimonial = $testimonialRepository->find($request->input('testimonial_id'));
+
+        Session::put('flash_testimonial', $testimonial);
+
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($testimonial->book_id)]);
     }
 
     /**

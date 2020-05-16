@@ -32,9 +32,16 @@ class TestimonialLayout extends Table
                 return DropDown::make()
                     ->icon('icon-menu')
                     ->list([
+                        Button::make('Edit')
+                            ->method('getTestimonial')
+                            ->parameters([
+                                'testimonial_id' => $testimonial->id,
+                            ])
+                        ->icon('icon-pencil'),
                         Button::make('Delete')
                             ->icon('icon-close')
                             ->method('removeTestimonial')
+                            ->confirm('Are you sure you want to delete testimonial?')
                             ->parameters([
                                 'action' => [
                                     'id' => $testimonial->id,
