@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Theme;
 use App\Topic;
 use App\Testimonial;
 use Orchid\Screen\AsSource;

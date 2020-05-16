@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Theme;
+use App\Models\Theme;
 use App\Models\Book;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;

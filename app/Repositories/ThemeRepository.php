@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Theme;
+use App\Models\Theme;
 
 /**
  * Class ThemeRepository
