@@ -30,6 +30,12 @@ class TopicLayout extends Table
                 return DropDown::make()
                     ->icon('icon-menu')
                     ->list([
+                        Button::make('Edit')
+                            ->icon('icon-pencil')
+                            ->method('getTopic')
+                            ->parameters([
+                                'topic_id' => $topic->id,
+                            ]),
                         Button::make('Remove')
                             ->icon('icon-close')
                             ->method('removeTopic')->parameters([

@@ -181,6 +181,20 @@ class PublicationScreen extends Screen
 
     /**
      * @param Request $request
+     * @param TopicRepository $topicRepository
+     * @return RedirectResponse
+     */
+    public function getTopic(Request $request, TopicRepository $topicRepository): RedirectResponse
+    {
+        $topic = $topicRepository->find($request->input('topic_id'));
+
+        Session::put('flash_topic', $topic);
+
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($topic->book_id)]);
+    }
+
+    /**
+     * @param Request $request
      * @param TopicRepository $repository
      * @return RedirectResponse
      */
