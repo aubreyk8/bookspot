@@ -17,6 +17,9 @@ class Book extends Model
 {
     use AsSource, Attachable;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
         'title',
         'sub_title',
