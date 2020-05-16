@@ -38,10 +38,10 @@ class TestimonialLayout extends Table
                                 'testimonial_id' => $testimonial->id,
                             ])
                         ->icon('icon-pencil'),
-                        Button::make('Delete')
+                        Button::make('Remove')
                             ->icon('icon-close')
                             ->method('removeTestimonial')
-                            ->confirm('Are you sure you want to delete testimonial?')
+                            ->confirm('Are you sure you want to remove testimonial?')
                             ->parameters([
                                 'action' => [
                                     'id' => $testimonial->id,

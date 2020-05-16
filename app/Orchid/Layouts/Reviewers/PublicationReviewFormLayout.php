@@ -72,7 +72,7 @@ class PublicationReviewFormLayout extends Rows
             Input::make('reviewer.book_id')
                 ->type('hidden')
                 ->value($this->book_id),
-            Button::make('submit')
+            Button::make('Save')
                 ->class('btn btn-primary pull-center')
                 ->icon('icon-save')
                 ->method('saveReviews'),

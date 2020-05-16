@@ -39,12 +39,19 @@ class PublicationReviewerLayout extends Table
             })->width(180),
             TD::set('action', 'Action')->render(function (Reviewer $reviewer) {
                 return DropDown::make()->icon('icon-menu')->list([
-                    Button::make('Delete')->icon('icon-close')->parameters([
+                    Button::make('Edit')
+                        ->icon('icon-pencil')
+                        ->method('getReviewer')
+                        ->parameters([
+                            'review_id' => $reviewer->id,
+                        ]),
+                    Button::make('Remove')->icon('icon-close')->parameters([
                         'action' => [
                             'id' => $reviewer->id,
                             'book_id' => $reviewer->book_id
                         ]
-                    ])->method('removeReview'),
+                    ])->method('removeReview')
+                        ->confirm('Are you sure you want to remove Review?'),
                 ]);
             })
                 ->width(30)

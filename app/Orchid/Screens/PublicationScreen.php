@@ -72,7 +72,7 @@ class PublicationScreen extends Screen
             'topics' => $this->bookLocator->getBookTopics(),
             'topic' => $this->bookLocator->getFlashModel('flash_topic'),
             'reviewers' => $this->bookLocator->getBookReviewers(),
-            'review' => $this->bookLocator->getFlashModel('flash_review'),
+            'reviewer' => $this->bookLocator->getFlashModel('flash_reviewer'),
             'testimonials' => $this->bookLocator->getBookTestimonials(),
             'testimonial' => $this->bookLocator->getFlashModel('flash_testimonial'),
             'theme' => $this->bookLocator->getBookTheme(),
@@ -213,6 +213,20 @@ class PublicationScreen extends Screen
 
     /**
      * @param Request $request
+     * @param ReviewerRepository $reviewerRepository
+     * @return RedirectResponse
+     */
+    public function getReviewer(Request $request, ReviewerRepository $reviewerRepository): RedirectResponse
+    {
+        $review = $reviewerRepository->find($request->input('review_id'));
+
+        Session::put('flash_reviewer', $review);
+
+        return redirect()->route('platform.publication', ['sequence_no' => base64_encode($review->book_id)]);
+    }
+
+    /**
+     * @param Request $request
      * @param ReviewerRepository $repository
      * @return RedirectResponse
      */
@@ -250,7 +264,7 @@ class PublicationScreen extends Screen
      * @param TestimonialRepository $testimonialRepository
      * @return RedirectResponse
      */
-    public function getTestimonial(Request $request, TestimonialRepository $testimonialRepository)
+    public function getTestimonial(Request $request, TestimonialRepository $testimonialRepository): RedirectResponse
     {
         $testimonial = $testimonialRepository->find($request->input('testimonial_id'));
 
