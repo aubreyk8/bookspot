@@ -6,7 +6,7 @@
                     <img
                         src="{{ $book->cover_image }}"
                         alt="{{ ucwords($book->title) }}"
-                        style="height: {{ $book->theme->cover_image_height }}px"
+                        style="height: {{ $book->theme->cover_image_height }}px; width: {{ $book->theme->cover_image_width }}px;"
                     />
                 </div>
             </div>
