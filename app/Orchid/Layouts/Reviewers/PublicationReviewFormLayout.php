@@ -68,6 +68,7 @@ class PublicationReviewFormLayout extends Rows
             Cropper::make('reviewer.image')
                 ->height(50)
                 ->title('Photo')
+                ->accept('image/*')
                 ->height('CROPPER_IMAGE_WIDTH', 900)
                 ->width('CROPPER_IMAGE_HEIGHT', 900)
                 ->horizontal(),

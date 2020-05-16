@@ -81,7 +81,8 @@ class PublicationFormLayout extends Rows
                 ->width(ENV('CROPPER_IMAGE_WIDTH', 900))
                 ->height(ENV('CROPPER_IMAGE_HEIGHT', 900))
                 ->accept('image/*')
-                ->horizontal()->title('Cover photo'),
+                ->horizontal()
+                ->title('Cover photo'),
             Upload::make('book.published_book')
                 ->acceptedFiles('application/pdf')
                 ->groups('publications')
